@@ -8,7 +8,7 @@ module.exports = {
   ],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     'no-duplicate-imports': 'error',
@@ -18,6 +18,6 @@ module.exports = {
     'no-undef': 'error',
     indent: ['error', 2],
     'no-trailing-spaces': 'error',
-    singleQuote: true,
+    'import/newline-after-import': ['error', { 'count': 1 }],
   },
 };
