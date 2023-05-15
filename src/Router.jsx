@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PageLayout from './components/common/PageLayout';
+import CreatePetition from './pages/CreatePetition';
 
 const Router = () => {
   return (
@@ -21,7 +22,7 @@ const Router = () => {
           <Route path="/myPetition" element={<div>my(pages 폴더에 페이지 만들어서 import)</div>} />
           <Route
             path="/createPetition"
-            element={<div>create(pages 폴더에 페이지 만들어서 import)</div>}
+            element={<CreatePetition />}
           />
         </Routes>
       </PageLayout>
