@@ -3,8 +3,7 @@ const colors = {
   black: '#000000',
 };
 
-const fonts = {
-};
+const fonts = {};
 
 const theme = {
   colors,
