@@ -23,6 +23,7 @@ const St = {
     margin-top: 2.4rem;
     margin-left: 1.55rem;
     margin-bottom: 0.8rem;
+
     ${theme.fonts.head2};
   `,
 };
