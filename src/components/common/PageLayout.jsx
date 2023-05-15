@@ -33,6 +33,6 @@ const St = {
     justify-content: center;
   `,
   PageLayoutBox: styled.div`
-    width: 37.5rem;
+    width: 100%;
   `,
 };

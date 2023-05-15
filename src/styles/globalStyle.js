@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
-
+import theme from './theme';
 export const reset = css`
   html,
   body,
@@ -144,17 +144,20 @@ ${reset}
     width:100%;
     height: 100vh;
     margin: 0 auto;
+    background-color: ${theme.colors.gray100};
 }
 html {
   font-size: 10px;
-}  
+
+}
 body {
-  font-size: 1rem; 
+  font-size: 1rem;
+
 }
 * {
     box-sizing: border-box;
 }
-    
+
 `;
 
 export default GlobalStyle;
