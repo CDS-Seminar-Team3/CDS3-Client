@@ -84,6 +84,7 @@ const St = {
       border-style: solid;
       border-color: ${theme.colors.gray400};
       border-radius: 0.4rem;
+      box-sizing: content-box;
     }
   `,
 };
