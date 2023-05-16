@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const PageLayout = props => {
   const { children } = props;
   return (
-    <div>
-      {/*헤더자리*/}
-      {children}
-      {/*푸터자리*/}
-    </div>
+    <St.PageLayoutWrapper>
+      <St.PageLayoutBox>
+        {/*헤더자리*/}
+        {children}
+        {/*푸터자리*/}
+      </St.PageLayoutBox>
+    </St.PageLayoutWrapper>
   );
 };
 /*
@@ -20,3 +23,16 @@ PageLayout.propTypes = {
 };
 
 export default PageLayout;
+
+{
+  /*전체 화면을 가운데 정렬하기 위해 PageLayout에 Wrapper,Box를 제작*/
+}
+const St = {
+  PageLayoutWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+  `,
+  PageLayoutBox: styled.div`
+    width: 37.5rem;
+  `,
+};
