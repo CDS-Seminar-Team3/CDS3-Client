@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PageLayout from './components/common/PageLayout';
 import CreatePetition from './pages/CreatePetition';
+import Main from './pages/Main';
 
 const Router = () => {
   return (
@@ -8,7 +9,7 @@ const Router = () => {
       <PageLayout>
         <Routes>
           {/*main 페이지 = 최근 청원 페이지여요*/}
-          <Route path="/" element={<div>main(pages 폴더에 페이지 만들어서 import)</div>} />
+          <Route path="/" element={<Main></Main>} />
           <Route path="/petitionDetail">
             {/*청원 상세 페이지인데, 각각의 상세 페이지를 구별해주는 것을
             petitionId라고 정의했어요!
@@ -20,10 +21,7 @@ const Router = () => {
             />
           </Route>
           <Route path="/myPetition" element={<div>my(pages 폴더에 페이지 만들어서 import)</div>} />
-          <Route
-            path="/createPetition"
-            element={<CreatePetition />}
-          />
+          <Route path="/createPetition" element={<CreatePetition />} />
         </Routes>
       </PageLayout>
     </BrowserRouter>
