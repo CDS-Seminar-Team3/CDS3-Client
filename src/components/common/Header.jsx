@@ -8,16 +8,16 @@ const Header = () => {
   return (
     <St.HeaderWrapper>
       <St.TitleMenu>
-        <img>
+        <span>
           <IcMenu />
-        </img>
-        <span>KBS 시청자 센터</span>
+        </span>
+        <span className="headerTitle">KBS 시청자 센터</span>
       </St.TitleMenu>
       <St.PageMenu>
         <span>청원하기</span>
-        <img>
+        <span className="iconMore">
           <IcMore />
-        </img>
+        </span>
       </St.PageMenu>
     </St.HeaderWrapper>
   );
@@ -36,11 +36,11 @@ export const St = {
     display: flex;
     align-items: center;
 
-    & > img {
+    & > span {
       width: 3.2rem;
       height: 3.2rem;
     }
-    & > span {
+    & > .headerTitle {
       font-size: 1.6rem;
       font-weight: 700;
     }
@@ -54,7 +54,7 @@ export const St = {
       font-weight: 700;
     }
 
-    & > img {
+    & > .iconMore {
       width: 3.2rem;
       height: 3.2rem;
     }
