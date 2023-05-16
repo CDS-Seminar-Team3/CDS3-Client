@@ -41,8 +41,7 @@ export const St = {
       height: 3.2rem;
     }
     & > .headerTitle {
-      font-size: 1.6rem;
-      font-weight: 700;
+      ${theme.fonts.head3}
     }
   `,
   PageMenu: styled.div`
@@ -50,8 +49,7 @@ export const St = {
     align-items: center;
 
     & > span {
-      font-size: 1.6rem;
-      font-weight: 700;
+      ${theme.fonts.head3}
     }
 
     & > .iconMore {
