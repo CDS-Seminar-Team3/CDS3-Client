@@ -7,7 +7,7 @@ const PageLayout = props => {
   return (
     <St.PageLayoutWrapper>
       <St.PageLayoutBox>
-        {Header}
+        <Header />
         {children}
         {/*푸터자리*/}
       </St.PageLayoutBox>
