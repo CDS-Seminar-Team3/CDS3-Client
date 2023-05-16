@@ -17,6 +17,7 @@ const St = {
   PetitionButtonsWrapper: styled.div`
     display: flex;
     justify-content: center;
+    margin-bottom: 8rem;
 
 
     padding-top: 0.8rem;
