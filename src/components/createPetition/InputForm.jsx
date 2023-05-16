@@ -153,6 +153,8 @@ const St = {
           height: 4rem;
           border: 0.1rem solid ${theme.colors.gray200};
 
+          background: ${theme.colors.gray100};
+
           & > div {
             display: flex;
             align-items: center;
