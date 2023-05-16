@@ -1,0 +1,18 @@
+export const DATA = [
+  { id: '00001', category: 'SNS 홈페이지', title: '게시물 1', agree: 1 },
+  { id: '00002', category: 'SNS 홈페이지', title: '게시물 2', agree: 1 },
+  { id: '00003', category: 'SNS 홈페이지', title: '게시물 3', agree: 1 },
+  { id: '00004', category: 'SNS 홈페이지', title: '게시물 4', agree: 1 },
+  { id: '00005', category: 'SNS 홈페이지', title: '게시물 1', agree: 1 },
+  { id: '00006', category: 'SNS 홈페이지', title: '게시물 2', agree: 1 },
+  { id: '00007', category: 'SNS 홈페이지', title: '게시물 3', agree: 1 },
+  { id: '00008', category: 'SNS 홈페이지', title: '게시물 4', agree: 1 },
+  { id: '00009', category: 'SNS 홈페이지', title: '게시물 1', agree: 1 },
+  { id: '00010', category: 'SNS 홈페이지', title: '게시물 2', agree: 1 },
+  //   { id: '00011', category: 'SNS 홈페이지', title: '게시물 3', agree: 1 },
+  //   { id: '00012', category: 'SNS 홈페이지', title: '게시물 4', agree: 1 },
+  //   { id: '00013', category: 'SNS 홈페이지', title: '게시물 1', agree: 1 },
+  //   { id: '00014', category: 'SNS 홈페이지', title: '게시물 2', agree: 1 },
+  //   { id: '00015', category: 'SNS 홈페이지', title: '게시물 3', agree: 1 },
+  //   { id: '00016', category: 'SNS 홈페이지', title: '게시물 4', agree: 1 },
+];
