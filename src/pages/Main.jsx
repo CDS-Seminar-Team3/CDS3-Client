@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../styles/theme';
+import PetitionList from '../components/CurrentPetition/PetitionList';
+import PageName from '../components/common/PageName';
+import { DATA } from '../constants/data';
 
 const Main = () => {
   return (
     <St.MainWrapper>
+      <PageName>이슈 청원</PageName>
       <St.IssuePetition>
         <St.PetitionHeader>
           <St.HeaderTitle>편성</St.HeaderTitle>
           <St.HeaderSubWrapper>
             <St.HeaderText>동의수 </St.HeaderText>
-            <St.HeaderTextNum>1,229</St.HeaderTextNum>
+            <St.HeaderNum>1,229</St.HeaderNum>
           </St.HeaderSubWrapper>
         </St.PetitionHeader>
         <St.MainText>제목</St.MainText>
@@ -26,12 +30,21 @@ const Main = () => {
           </St.TextWrapper>
         </St.PetitionFooter>
       </St.IssuePetition>
+
+      <St.MainSectionWrapper>
+        <PageName>
+          최근 청원 <St.MyPetitionBtn>나의 청원</St.MyPetitionBtn>
+        </PageName>
+        <PetitionList data={DATA}></PetitionList>
+        {/* 페이지네이션을 추가해주세요 */}
+      </St.MainSectionWrapper>
     </St.MainWrapper>
   );
 };
 
 const St = {
   MainWrapper: styled.main`
+    height: inherit;
     padding: 2rem;
   `,
   IssuePetition: styled.section`
@@ -78,7 +91,7 @@ const St = {
     ${theme.fonts.body1_bold};
     color: ${theme.colors.blue};
   `,
-  HeaderTextNum: styled.span`
+  HeaderNum: styled.span`
     color: ${theme.colors.blue};
     ${theme.fonts.head1};
   `,
@@ -114,7 +127,21 @@ const St = {
     background: ${theme.colors.blue};
     border-radius: 2rem;
   `,
-  MainSectionWrapper: styled.section``,
+  MainSectionWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+  `,
+
+  MyPetitionBtn: styled.button`
+    width: 9.4rem;
+    height: 3rem;
+
+    border: 1px solid ${theme.colors.blue};
+
+    color: ${theme.colors.blue};
+    background-color: ${theme.colors.white};
+    ${theme.fonts.caption1};
+  `,
 };
 
 export default Main;
