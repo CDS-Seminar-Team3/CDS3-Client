@@ -23,7 +23,7 @@ function FONT({ weight, size, lineHeight, letterSpacing }) {
 
 const fonts = {
   head1: FONT({ weight: 700, size: 2.2, lineHeight: 130, letterSpacing: 6 }),
-  head2: FONT({ weight: 500, size: 2.0, lineHeight: 130, letterSpacing: 6}),
+  head2: FONT({ weight: 500, size: 2.0, lineHeight: 130, letterSpacing: 6 }),
   head3: FONT({ weight: 700, size: 1.6, lineHeight: 130, letterSpacing: 6 }),
   head4: FONT({ weight: 400, size: 1.6, lineHeight: 130, letterSpacing: 6 }),
   body1_bold: FONT({ weight: 700, size: 1.4, lineHeight: 150, letterSpacing: 6 }),
@@ -31,6 +31,8 @@ const fonts = {
   body2: FONT({ weight: 400, size: 1.3, lineHeight: 150, letterSpacing: 6 }),
   body3_bold: FONT({ weight: 700, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
   body3: FONT({ weight: 400, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
+  body4: FONT({ weight: 700, size: 1.2, lineHeight: 180, letterSpacing: 6 }),
+  body5: FONT({ weight: 400, size: 1.2, lineHeight: 180, letterSpacing: 6 }),
   caption1: FONT({ weight: 700, size: 1.2, lineHeight: 130, letterSpacing: 3 }),
   caption2: FONT({ weight: 400, size: 1.0, lineHeight: 130, letterSpacing: 3 }),
 };
