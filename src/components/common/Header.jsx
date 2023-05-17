@@ -34,7 +34,7 @@ export const St = {
     height: 4.2rem;
     width: 37.5rem;
 
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${theme.colors.white};
     border-bottom: 0.2rem solid ${theme.colors.gray200};
   `,
   TitleMenu: styled.div`
@@ -42,8 +42,6 @@ export const St = {
     display: flex;
     align-items: center;
 
-    & > span {
-    }
     & > .headerTitle {
       ${theme.fonts.head3}
     }
@@ -53,6 +51,12 @@ export const St = {
     align-items: center;
     & > span {
       ${theme.fonts.head3}
+
+      cursor: pointer;
+    }
+
+    & > .iconMore {
+      cursor: pointer;
     }
   `,
 };
