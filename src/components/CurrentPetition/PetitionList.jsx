@@ -43,7 +43,6 @@ const St = {
     display: flex;
     flex-direction: column;
     max-height: 16rem;
-    /*  width:100%; */
   `,
   SearchInput: styled.input`
     /* width:100%; */
