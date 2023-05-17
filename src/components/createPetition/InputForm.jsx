@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
-import { ReactComponent as IcRedDot } from '../../assets/icons/IcRedDot.svg';
-import { ReactComponent as IcLinkAdd } from '../../assets/icons/IcLinkAdd.svg';
+import { IcRedDot, IcLinkAdd } from '../../assets/icons/0_icons';
 
 const InputForm = () => {
   return (
