@@ -2,9 +2,8 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
-import { ReactComponent as IcRedDot } from '../../assets/icons/IcRedDot.svg';
-import { ReactComponent as IcLinkAdd } from '../../assets/icons/IcLinkAdd.svg';
 import { categoryState, titleState, contentState } from '../../atoms/registerPetitionAtom';
+import { IcRedDot, IcLinkAdd } from '../../assets/icons/0_icons';
 
 const InputForm = () => {
   const [category, setCategory] = useRecoilState(categoryState);
