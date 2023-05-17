@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../styles/theme';
-import PetitionList from '../components/CurrentPetition/PetitionList';
+import PetitionList from '../components/common/PetitionList';
 import PageName from '../components/common/PageName';
 import { DATA } from '../constants/data';
 import PetitionHeader from '../components/CurrentPetition/petitionHeader';

@@ -4,32 +4,32 @@ import theme from '../../styles/theme';
 
 const PetitionHeader = () => {
   return (
-    <St.IssuePetition>
-      <St.PetitionHeader>
-        <St.HeaderTitle>편성</St.HeaderTitle>
-        <St.HeaderSubWrapper>
-          <St.HeaderText>동의수 </St.HeaderText>
-          <St.HeaderNum>1,229</St.HeaderNum>
-        </St.HeaderSubWrapper>
-      </St.PetitionHeader>
-      <St.MainText>제목</St.MainText>
-      <St.PetitionFooter>
-        <St.TextWrapper>
-          <St.BlurredText>청원자</St.BlurredText>
-          <St.FooterText>아이디</St.FooterText>
-        </St.TextWrapper>
-        <St.TextWrapper>
-          <St.BlurredText>청원마감</St.BlurredText>
-          <St.FooterText>YYYY.05.21</St.FooterText>
+    <St.PetitionHeaderWrapper>
+      <St.HeaderContainer>
+        <article>편성</article>
+        <section>
+          <span>동의수 </span>
+          <span>1,229</span>
+        </section>
+      </St.HeaderContainer>
+      <h1>제목</h1>
+      <St.FooterContainer>
+        <section>
+          <span>청원자</span>
+          <span>아이디</span>
+        </section>
+        <section>
+          <span>청원마감</span>
+          <span>YYYY.05.21</span>
           <St.DdayWrapper>D-N</St.DdayWrapper>
-        </St.TextWrapper>
-      </St.PetitionFooter>
-    </St.IssuePetition>
+        </section>
+      </St.FooterContainer>
+    </St.PetitionHeaderWrapper>
   );
 };
 
 const St = {
-  IssuePetition: styled.section`
+  PetitionHeaderWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -40,8 +40,12 @@ const St = {
     gap: 0.8rem;
 
     box-sizing: border-box;
+
+    & > h1 {
+      ${theme.fonts.head2};
+    }
   `,
-  PetitionHeader: styled.header`
+  HeaderContainer: styled.header`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,65 +53,68 @@ const St = {
 
     width: 100%;
     height: 33.3%;
+
+    & > section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      & > span:nth-child(1) {
+        ${theme.fonts.body1_bold};
+        color: ${theme.colors.blue};
+      }
+
+      & > span:nth-child(2) {
+        color: ${theme.colors.blue};
+        ${theme.fonts.head1};
+      }
+    }
+
+    & > article:first-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 5.4rem;
+      height: 2.3rem;
+
+      border: 1px solid ${theme.colors.blue};
+      border-radius: 20px;
+
+      ${theme.fonts.caption1}
+      color:${theme.colors.blue}
+    }
   `,
-  HeaderTitle: styled.article`
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    width: 5.4rem;
-    height: 2.3rem;
-
-    border: 1px solid ${theme.colors.blue};
-    border-radius: 20px;
-
-    ${theme.fonts.caption1}
-    color:${theme.colors.blue}
-  `,
-  HeaderSubWrapper: styled.article`
+  FooterContainer: styled.footer`
     display: flex;
     align-items: center;
     gap: 1rem;
-  `,
-  HeaderText: styled.span`
-    ${theme.fonts.body1_bold};
-    color: ${theme.colors.blue};
-  `,
-  HeaderNum: styled.span`
-    color: ${theme.colors.blue};
-    ${theme.fonts.head1};
-  `,
 
-  MainText: styled.h1`
-    ${theme.fonts.head2};
-  `,
+    & > section {
+      display: flex;
+      gap: 0.4rem;
 
-  PetitionFooter: styled.footer`
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  `,
-  BlurredText: styled.span`
-    color: ${theme.colors.gray400};
-    ${theme.fonts.body2};
-  `,
-  FooterText: styled.span`
-    ${theme.fonts.body1};
-  `,
-  TextWrapper: styled.article`
-    display: flex;
-    gap: 0.4rem;
-  `,
-  DdayWrapper: styled.article`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      & > span:nth-child(1) {
+        color: ${theme.colors.gray400};
+        ${theme.fonts.body2};
+      }
+      & > span:nth-child(2) {
+        ${theme.fonts.body1};
+      }
 
-    width: 4rem;
+      & > article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    color: ${theme.colors.white};
-    background: ${theme.colors.blue};
-    border-radius: 2rem;
+        width: 4rem;
+
+        color: ${theme.colors.white};
+        background: ${theme.colors.blue};
+        border-radius: 2rem;
+      }
+    }
   `,
 };
 export default PetitionHeader;
