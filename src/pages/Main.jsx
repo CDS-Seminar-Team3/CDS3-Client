@@ -44,8 +44,11 @@ const Main = () => {
 
 const St = {
   MainWrapper: styled.main`
-    height: inherit;
+    height: 100vh;
+    width: 37.5rem;
     padding: 2rem;
+
+    background: ${theme.colors.white};
   `,
   IssuePetition: styled.section`
     display: flex;

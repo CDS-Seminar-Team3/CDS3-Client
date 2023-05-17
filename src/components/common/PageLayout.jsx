@@ -31,10 +31,8 @@ const St = {
   PageLayoutWrapper: styled.div`
     display: flex;
     justify-content: center;
-    height: 100%;
   `,
   PageLayoutBox: styled.div`
-    width: 100%;
-    height: 100%;
+    width: 37.5rem;
   `,
 };
