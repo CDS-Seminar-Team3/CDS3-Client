@@ -88,16 +88,17 @@ const St = {
 
     & > .PetitionTitle {
       margin-top: 0.8rem;
-    }
 
-    & > .PetitionTitle > span {
-      ${theme.fonts.body1}
-    }
+      & > span {
+        ${theme.fonts.body1}
+      }
 
-    & > .PetitionTitle > span:last-of-type {
-      ${theme.fonts.body1_bold}
+      & > span:last-of-type {
+        ${theme.fonts.body1_bold}
+      }
     }
   `,
+
   InfoItem: styled.span`
     ${theme.fonts.body3_bold}
     color: ${theme.colors.gray400};
