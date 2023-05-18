@@ -52,8 +52,7 @@ export const St = {
 
     & > span {
       ${theme.fonts.head3}
-
-      cursor:pointer;
+      cursor: pointer;
     }
 
     & > .iconMore {
