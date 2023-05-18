@@ -30,7 +30,7 @@ const InputForm = () => {
   const onChangeLink = (index, value) => {
     const currentLink = [...links];
     currentLink[index] = value;
-    setLinks([...currentLink]);
+    setLinks(currentLink);
   };
 
   return (
@@ -81,7 +81,9 @@ const InputForm = () => {
         <h3>링크</h3>
         <div className="buttonWrapper">
           {links.map((link, index) => {
-            return <input key={index} value={link} onChange={e => onChangeLink(index, e.target.value)} />;
+            return (
+              <input key={index} value={link} onChange={e => onChangeLink(index, e.target.value)} />
+            );
           })}
           <button onClick={addLink}>
             <IcLinkAdd />
