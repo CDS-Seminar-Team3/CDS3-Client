@@ -2,6 +2,7 @@ const colors = {
   white: '#FFFFFF',
   gray100: '#F7F7F7',
   gray200: '#E1E1E1',
+  gray300: '#B4B4B4',
   gray400: '#8A8A8A',
   gray600: '#3E3E3E',
   gray800: '#1B1B1B',
@@ -12,7 +13,7 @@ const colors = {
 
 function FONT({ weight, size, lineHeight, letterSpacing }) {
   return `
-        font-family: 'Noto Sans CJK KR';
+        font-family: noto-sans-cjk-kr, sans-serif;
         font-style: normal;
         font-weight: ${weight};
         font-size: ${size}rem;
