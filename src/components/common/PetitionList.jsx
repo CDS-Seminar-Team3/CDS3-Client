@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
@@ -7,7 +6,7 @@ const PetitionList = ({ data }) => {
   return (
     <St.PetitionListWrapper>
       <St.SearchInput placeholder="검색어를 입력하세요"></St.SearchInput>
-      <St.TableWrapper>
+      <section>
         <St.TableHeader>
           <St.TableCell flex="1" className="headerCell">
             번호
@@ -18,19 +17,21 @@ const PetitionList = ({ data }) => {
           <St.TableCell flex="3" className="headerCell">
             제목
           </St.TableCell>
-          <ISt.TableCellCenter flex="1" className="headerCell">
+          <St.TableCell flex="1" className="headerCell">
             동의
-          </ISt.TableCellCenter>
+          </St.TableCell>
         </St.TableHeader>
         {data.map(item => (
           <St.TableRow key={item.id}>
             <St.TableCell flex="1">{item.id}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
             <St.TableCell flex="3">{item.title}</St.TableCell>
-            <ISt.TableCellCenter flex="1">{item.agree}</ISt.TableCellCenter>
+            <St.TableCell flex="1" textAlign="center">
+              {item.agree}
+            </St.TableCell>
           </St.TableRow>
         ))}
-      </St.TableWrapper>
+      </section>
     </St.PetitionListWrapper>
   );
 };
@@ -43,6 +44,13 @@ const St = {
     display: flex;
     flex-direction: column;
     max-height: 16rem;
+
+    & > section {
+      display: flex;
+      flex-direction: column;
+
+      border: 2px solid ${theme.colors.gray100};
+    }
   `,
   SearchInput: styled.input`
     /* width:100%; */
@@ -57,12 +65,7 @@ const St = {
 
     outline: none;
   `,
-  TableWrapper: styled.div`
-    display: flex;
-    flex-direction: column;
 
-    border: 2px solid ${theme.colors.gray100};
-  `,
   TableHeader: styled.div`
     display: flex;
     align-items: center;
@@ -89,20 +92,22 @@ const St = {
     }
   `,
 
-  TableCell: styled.div`
+  TableCell: styled.article`
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
 
-    ${theme.fonts.body3}
-    color:${theme.colors.gray400}
+    ${theme.fonts.body3};
+    color: ${theme.colors.gray400};
+
+    text-align: ${props => props.textAlign || 'center'};
   `,
 };
 
 // TalbeCell을 재사용하고 싶은데 해결방법이 떠오르지 않았습니다..
-const ISt = {
-  TableCellCenter: styled(St.TableCell)`
-    text-align: center;
-  `,
-};
+// const ISt = {
+//   TableCellCenter: styled(St.TableCell)`
+//     text-align: center;
+//   `,
+// };
 
 export default PetitionList;

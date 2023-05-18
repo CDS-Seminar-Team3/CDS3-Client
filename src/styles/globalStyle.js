@@ -143,7 +143,7 @@ ${reset}
 
 #root, body, html {
     width:100%;
-    height: 100vh;
+    height: 100%;
     margin: 0 auto;
     background-color: ${theme.colors.gray100};
 }
@@ -151,14 +151,14 @@ ${reset}
 html {
   font-size: 10px;
 }
-
 body {
   font-size: 1rem;
-}
 
+}
 * {
     box-sizing: border-box;
 }
+
 `;
 
 export default GlobalStyle;
