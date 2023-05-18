@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { IcProgress, IcProgress2, IcProgress3 } from '../../assets/icons/0_icons';
+import { useNavigate } from 'react-router-dom';
 
 const PetitionInfo = () => {
   return (
