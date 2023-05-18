@@ -13,7 +13,7 @@ const colors = {
 
 function FONT({ weight, size, lineHeight, letterSpacing }) {
   return `
-        font-family: 'Noto Sans KR';
+        font-family: noto-sans-cjk-kr, sans-serif;
         font-style: normal;
         font-weight: ${weight};
         font-size: ${size}rem;
