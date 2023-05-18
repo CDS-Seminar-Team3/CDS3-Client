@@ -12,7 +12,7 @@ const Footer = () => {
     <St.FooterWrapper>
       <St.FooterDownload>
         <span>
-          <b>KBS 애플리케이션</b> 다운로드
+          <b className="downloadBold">KBS 애플리케이션</b> 다운로드
         </span>
         <span className="icArrowDown">
           <IcArrowDown />
@@ -36,9 +36,9 @@ const Footer = () => {
         <span>FAQ</span>
         <span>웹 접근성 안내</span>
       </St.FooterMenuBottom>
-      <span className="footerCopyright">
-        <b>KBS</b> ALL rights reserved
-      </span>
+      <div className="footerCopyright">
+        <span>KBS </span> <span>ALL rights reserved</span>
+      </div>
     </St.FooterWrapper>
   );
 };
@@ -60,13 +60,14 @@ export const St = {
 
     & > .footerCopyright {
       margin-bottom: 3.2rem;
+    }
 
-      font-family: 'Noto Sans CJK KR';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 1rem;
-      line-height: 150%;
-      letter-spacing: -0.06rem;
+    & > .footerCopyright > span {
+      ${theme.fonts.footer_copyright_bold}
+    }
+
+    & > .footerCopyright > span:last-of-type {
+      ${theme.fonts.footer_copyright}
     }
   `,
   FooterDownload: styled.div`
@@ -87,7 +88,7 @@ export const St = {
       margin-left: 2.4rem;
     }
 
-    & > span > b {
+    .downloadBold {
       ${theme.fonts.body3_bold}
     }
 
@@ -115,7 +116,13 @@ export const St = {
     height: 1.8rem;
     width: 29.3rem;
 
-    ${theme.fonts.body5}
+    span {
+      ${theme.fonts.body5}
+    }
+
+    & > span:nth-of-type(4) {
+      ${theme.fonts.body4}
+    }
   `,
   FooterMenuBottom: styled.div`
     display: flex;
@@ -128,6 +135,8 @@ export const St = {
 
     margin-bottom: 2.4rem;
 
-    ${theme.fonts.body5}
+    span {
+      ${theme.fonts.body5}
+    }
   `,
 };
