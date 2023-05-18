@@ -2,6 +2,7 @@ const colors = {
   white: '#FFFFFF',
   gray100: '#F7F7F7',
   gray200: '#E1E1E1',
+  gray300: '#B4B4B4',
   gray400: '#8A8A8A',
   gray600: '#3E3E3E',
   gray800: '#1B1B1B',
@@ -12,7 +13,7 @@ const colors = {
 
 function FONT({ weight, size, lineHeight, letterSpacing }) {
   return `
-        font-family: 'Noto Sans CJK KR';
+        font-family: 'Noto Sans KR';
         font-style: normal;
         font-weight: ${weight};
         font-size: ${size}rem;
@@ -23,7 +24,7 @@ function FONT({ weight, size, lineHeight, letterSpacing }) {
 
 const fonts = {
   head1: FONT({ weight: 700, size: 2.2, lineHeight: 130, letterSpacing: 6 }),
-  head2: FONT({ weight: 500, size: 2.0, lineHeight: 130, letterSpacing: 6}),
+  head2: FONT({ weight: 500, size: 2.0, lineHeight: 130, letterSpacing: 6 }),
   head3: FONT({ weight: 700, size: 1.6, lineHeight: 130, letterSpacing: 6 }),
   head4: FONT({ weight: 400, size: 1.6, lineHeight: 130, letterSpacing: 6 }),
   body1_bold: FONT({ weight: 700, size: 1.4, lineHeight: 150, letterSpacing: 6 }),
