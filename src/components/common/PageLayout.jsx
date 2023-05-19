@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from './Header';
+import theme from '../../styles/theme';
 
 const PageLayout = props => {
   const { children } = props;
@@ -35,5 +36,6 @@ const St = {
   `,
   PageLayoutBox: styled.div`
     width: 37.5rem;
+    background-color: ${theme.colors.white};
   `,
 };

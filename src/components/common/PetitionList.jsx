@@ -43,7 +43,10 @@ const St = {
   PetitionListWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    max-height: 16rem;
+
+    width: 33.5rem;
+
+    background: ${theme.colors.white};
 
     & > section {
       display: flex;
@@ -64,6 +67,10 @@ const St = {
     ${theme.fonts.body1};
 
     outline: none;
+
+    &::placeholder {
+      ${theme.colors.gray300}
+    }
   `,
 
   TableHeader: styled.div`
@@ -97,10 +104,9 @@ const St = {
     padding: 0.8rem;
 
     ${theme.fonts.body3};
-    color: ${theme.colors.gray400};
+    color: ${theme.colors.gray300};
 
-    ${props =>
-      props.textAlign &&
+    ${props => props.textAlign &&
       `
     text-align: ${props.textAlign};
   `};
