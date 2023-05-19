@@ -12,6 +12,11 @@ const PetitionAgree = () => {
           현재 <span>25 </span>명이 동참중입니다.
         </h1>
       </St.AgreeHeader>
+      <St.InputWrapper>
+        <input type="text" value="청원에 동의합니다." readOnly />
+
+        <button onClick={handleAgree}>동의</button>
+      </St.InputWrapper>
     </St.PetitionAgreeWrapper>
   );
 };
@@ -35,6 +40,33 @@ const St = {
         ${theme.fonts.body1_bold}
         color:${theme.colors.blue};
       }
+    }
+  `,
+  InputWrapper: styled.section`
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 1.2rem;
+    & > input {
+      width: 27.6rem;
+      height: 4rem;
+
+      padding: 1rem 1.6rem;
+      border: 1px solid ${theme.colors.gray200};
+      color: ${theme.colors.gray400};
+    }
+
+    & > button {
+      width: 5.6rem;
+      height: 4rem;
+      padding: 1rem 1.6rem;
+
+      border-radius: 4px;
+      border: none;
+
+      background-color: ${theme.colors.blue};
+      ${theme.fonts.body2_bold}
+      color:${theme.colors.white}
     }
   `,
 };
