@@ -1,7 +1,16 @@
+import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { checkCautionState } from '../../atoms/registerPetitionAtom';
 
 const Caution = () => {
+  const [checkCaution, setCheckCaution] = useRecoilState(checkCautionState);
+
+  const handleCheckCaution = () => {
+    setCheckCaution(!checkCaution);
+  }
+
   return (
     <St.CautionWrapper>
       <St.Caution>
@@ -24,7 +33,7 @@ const Caution = () => {
           것입니다.)
         </article>
         <St.ConfirmCaution>
-          <input type="checkbox" /> 위 내용을 확인했습니다.
+          <input value={checkCaution} onChange={handleCheckCaution} type="checkbox" /> 위 내용을 확인했습니다.
         </St.ConfirmCaution>
       </St.Caution>
     </St.CautionWrapper>

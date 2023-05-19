@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Header from './Header';
 
 const PageLayout = props => {
   const { children } = props;
   return (
     <St.PageLayoutWrapper>
       <St.PageLayoutBox>
-        {/*헤더자리*/}
+        <Header />
         {children}
         {/*푸터자리*/}
       </St.PageLayoutBox>
