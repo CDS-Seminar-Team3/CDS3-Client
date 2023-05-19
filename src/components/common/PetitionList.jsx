@@ -17,7 +17,7 @@ const PetitionList = ({ data }) => {
           <St.TableCell flex="3" className="headerCell">
             제목
           </St.TableCell>
-          <St.TableCell flex="1" className="headerCell">
+          <St.TableCell flex="1" className="headerCell" textAlign="center">
             동의
           </St.TableCell>
         </St.TableHeader>
@@ -57,7 +57,7 @@ const St = {
     height: 4.3rem;
     padding: 1.6rem 1.2rem;
     border: none;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
 
     background-color: ${theme.colors.gray100};
     color: ${theme.colors.gray300};
@@ -99,15 +99,12 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray400};
 
-    text-align: ${props => props.textAlign || 'center'};
+    ${props =>
+      props.textAlign &&
+      `
+    text-align: ${props.textAlign};
+  `};
   `,
 };
-
-// TalbeCell을 재사용하고 싶은데 해결방법이 떠오르지 않았습니다..
-// const ISt = {
-//   TableCellCenter: styled(St.TableCell)`
-//     text-align: center;
-//   `,
-// };
 
 export default PetitionList;
