@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 import PetitionList from '../components/common/PetitionList';
 import PageName from '../components/common/PageName';
 import { DATA } from '../constants/data';
-import PetitionHeader from '../components/CurrentPetition/petitionHeader';
+import PetitionHeader from '../components/currentPetition/PetitionHeader';
 
 const Main = () => {
   return (
@@ -29,15 +28,9 @@ const St = {
     background: ${theme.colors.white};
   `,
 
-  MainSectionWrapper: styled.section`
-    display: flex;
-    flex-direction: column;
-  `,
-
   MyPetitionBtn: styled.button`
     width: 9.4rem;
     height: 3rem;
-
     border: 1px solid ${theme.colors.blue};
 
     color: ${theme.colors.blue};

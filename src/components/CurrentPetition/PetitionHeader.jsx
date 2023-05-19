@@ -20,7 +20,7 @@ const PetitionHeader = () => {
         <section>
           <span>청원마감</span>
           <span>YYYY.05.21</span>
-          <St.DdayWrapper>D-N</St.DdayWrapper>
+          <article>D-N</article>
         </section>
       </St.FooterContainer>
     </St.PetitionHeaderWrapper>
