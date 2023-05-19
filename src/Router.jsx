@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PageLayout from './components/common/PageLayout';
 import CreatePetition from './pages/CreatePetition';
+import PetitionDetail from './pages/PetitionDetail';
 
 const Router = () => {
   return (
@@ -14,16 +15,10 @@ const Router = () => {
             petitionId라고 정의했어요!
             아마 서버쌤들께서 배열로 최근 청원 목록 넘겨주실 건데
             배열 인덱스로 navigate 해주시면 될 것 같습니다!*/}
-            <Route
-              path="/petitionDetail/:petitionId"
-              element={<div>petitionDetail(pages 폴더에 페이지 만들어서 import)</div>}
-            />
+            <Route path="/petitionDetail/:petitionId" element={<PetitionDetail />} />
           </Route>
           <Route path="/myPetition" element={<div>my(pages 폴더에 페이지 만들어서 import)</div>} />
-          <Route
-            path="/createPetition"
-            element={<CreatePetition />}
-          />
+          <Route path="/createPetition" element={<CreatePetition />} />
         </Routes>
       </PageLayout>
     </BrowserRouter>
