@@ -1,11 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
-import { ReactComponent as IcArrowDown } from '../../assets/icons/IcArrowDown.svg';
-import { ReactComponent as IcFacebook } from '../../assets/icons/IcFacebook.svg';
-import { ReactComponent as IcInstagram } from '../../assets/icons/IcInstagram.svg';
-import { ReactComponent as IcTwitter } from '../../assets/icons/IcTwitter.svg';
-import { ReactComponent as IcYoutube } from '../../assets/icons/IcYoutube.svg';
+import {
+  IcArrowDown,
+  IcFacebook,
+  IcInstagram,
+  IcTwitter,
+  IcYoutube,
+} from '../../assets/icons/0_icons';
 
 const Footer = () => {
   return (
