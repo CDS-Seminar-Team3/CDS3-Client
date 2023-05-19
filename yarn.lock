@@ -2421,7 +2421,7 @@ __metadata:
     react-router-dom: ^6.11.1
     recoil: ^0.7.7
     styled-components: ^6.0.0-rc.1
-    vite: ^4.3.2
+    vite: ^4.3.8
     vite-plugin-svgr: ^3.2.0
   languageName: unknown
   linkType: soft
@@ -2623,9 +2623,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.399
-  resolution: "electron-to-chromium@npm:1.4.399"
-  checksum: 51995e6e4dd6d2f630d56b21bd0ae47d8078dc7414b9648e644ba11fad99631da742ffd7a0f8af0abcb0bdb1749a678f95c87ead9b604fbc4625395b4236c94a
+  version: 1.4.401
+  resolution: "electron-to-chromium@npm:1.4.401"
+  checksum: 1bedceac7374b128b4ce06b63fef7d1c5cf8bb0647d90d11f331066f6e7070ff2b509a46fd4ba22d0f4032e389307da1961be1a6737c8410a72ad1abfc3151a7
   languageName: node
   linkType: hard
 
@@ -5109,9 +5109,9 @@ __metadata:
   linkType: hard
 
 "tslib@npm:^2.5.0":
-  version: 2.5.1
-  resolution: "tslib@npm:2.5.1"
-  checksum: 535e41e956b32d21aeff007a2c74989d1a6bf3fecb2b0141d80e5b9920bf90e23b4f0cd3772704bc03637c762dbdc1a314d75a407dd7189afbe3e83d80df9392
+  version: 2.5.2
+  resolution: "tslib@npm:2.5.2"
+  checksum: 4d3c1e238b94127ed0e88aa0380db3c2ddae581dc0f4bae5a982345e9f50ee5eda90835b8bfba99b02df10a5734470be197158c36f9129ac49fdc14a6a9da222
   languageName: node
   linkType: hard
 
@@ -5246,7 +5246,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^4.3.2":
+"vite@npm:^4.3.8":
   version: 4.3.8
   resolution: "vite@npm:4.3.8"
   dependencies:

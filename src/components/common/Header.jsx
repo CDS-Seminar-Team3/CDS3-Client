@@ -48,9 +48,9 @@ export const St = {
   PageMenu: styled.div`
     display: flex;
     align-items: center;
+
     & > span {
       ${theme.fonts.head3}
-
       cursor: pointer;
     }
 

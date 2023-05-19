@@ -32,8 +32,12 @@ const fonts = {
   body2: FONT({ weight: 400, size: 1.3, lineHeight: 150, letterSpacing: 6 }),
   body3_bold: FONT({ weight: 700, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
   body3: FONT({ weight: 400, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
+  body4: FONT({ weight: 700, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
+  body5: FONT({ weight: 400, size: 1.2, lineHeight: 150, letterSpacing: 6 }),
   caption1: FONT({ weight: 700, size: 1.2, lineHeight: 130, letterSpacing: 3 }),
   caption2: FONT({ weight: 400, size: 1.0, lineHeight: 130, letterSpacing: 3 }),
+  footer_copyright_bold: FONT({ weight: 700, size: 1.0, lineHeight: 150, letterSpacing: 6 }),
+  footer_copyright: FONT({ weight: 400, size: 1.0, lineHeight: 150, letterSpacing: 6 }),
 };
 
 const theme = {
