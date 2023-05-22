@@ -3,6 +3,7 @@ export { ReactComponent as IcShare } from '../icons/IcShare.svg';
 export { ReactComponent as IcProgress } from '../icons/IcProgress.svg';
 export { ReactComponent as IcProgress2 } from '../icons/IcProgress2.svg';
 export { ReactComponent as IcProgress3 } from '../icons/IcProgress3.svg';
+export { ReactComponent as IcMore } from '../icons/IcMore.svg';
 export { ReactComponent as IcArrowDown } from '../icons/IcArrowDown.svg';
 export { ReactComponent as IcFacebook } from '../icons/IcFacebook.svg';
 export { ReactComponent as IcInstagram } from '../icons/IcInstagram.svg';
