@@ -17,6 +17,12 @@ const InputForm = () => {
     }
   };
 
+  const deleteLink = (index) => {
+    const deletedLinks = [...links];
+    deletedLinks.splice(index,1);
+    setLinks(deletedLinks);
+  }
+
   const onChangeCategory = e => {
     setCategory(e.target.value);
   };
@@ -86,7 +92,7 @@ const InputForm = () => {
             return (
               <div key={index}>
                 <input value={link} onChange={e => onChangeLink(index, e.target.value)} />
-                {index > 0 ? <IcDeleteLink className='deleteIcon' /> : <></>}
+                {index > 0 ? <IcDeleteLink className='deleteIcon' onClick={() => deleteLink(index)} /> : <></>}
               </div>
             );
           })}
@@ -193,8 +199,10 @@ const St = {
           & > .deleteIcon {
           position: absolute;
           //리팩토링 필요! refactor
-          bottom: 1.5rem;
+          bottom: 1.6rem;
           right: 0.8rem;
+          
+          cursor: pointer;
         }
         }
 
