@@ -11,7 +11,12 @@ ex) <PageName button={<Button />}>최근 청원</PageName>
 }
 
 const PageName = ({ children, button }) => {
-  return <St.PageNameWrapper>{children}{button}</St.PageNameWrapper>;
+  return (
+    <St.PageNameWrapper>
+      {children}
+      {button}
+    </St.PageNameWrapper>
+  );
 };
 
 PageName.propTypes = {
@@ -23,8 +28,11 @@ export default PageName;
 
 const St = {
   PageNameWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    width: 33.5rem;
     margin-top: 2.4rem;
-    /* margin-left: 1.55rem; */ //적용해보니 없어야 디자인이 맞는것 같아서 주석처리 했어요!
     margin-bottom: 0.8rem;
 
     ${theme.fonts.head2};

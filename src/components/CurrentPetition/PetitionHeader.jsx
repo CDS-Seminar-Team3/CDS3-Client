@@ -33,6 +33,7 @@ const St = {
     flex-direction: column;
     align-items: flex-start;
 
+    width: 33.5rem;
     height: 11.9rem;
     border: 0.2rem solid ${theme.colors.gray100};
     padding: 1rem;
