@@ -9,7 +9,7 @@ const Caution = () => {
 
   const handleCheckCaution = () => {
     setCheckCaution(!checkCaution);
-  }
+  };
 
   return (
     <St.CautionWrapper>
@@ -33,7 +33,8 @@ const Caution = () => {
           것입니다.)
         </article>
         <St.ConfirmCaution>
-          <input value={checkCaution} onChange={handleCheckCaution} type="checkbox" /> 위 내용을 확인했습니다.
+          <input value={checkCaution} onChange={handleCheckCaution} type="checkbox" /> 위 내용을
+          확인했습니다.
         </St.ConfirmCaution>
       </St.Caution>
     </St.CautionWrapper>
