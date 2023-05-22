@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
-import { ReactComponent as IcMore } from '../../assets/icons/IcMore.svg';
-import { ReactComponent as IcMenu } from '../../assets/icons/IcMenu.svg';
+import { IcMenu, IcMore } from '../../assets/icons/0_icons';
 
 const Header = () => {
   return (
@@ -49,9 +48,9 @@ export const St = {
   PageMenu: styled.div`
     display: flex;
     align-items: center;
+
     & > span {
       ${theme.fonts.head3}
-
       cursor: pointer;
     }
 

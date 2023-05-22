@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from './Header';
+import Footer from './Footer';
 
 const PageLayout = props => {
   const { children } = props;
@@ -9,7 +10,7 @@ const PageLayout = props => {
       <St.PageLayoutBox>
         <Header />
         {children}
-        {/*푸터자리*/}
+        <Footer />
       </St.PageLayoutBox>
     </St.PageLayoutWrapper>
   );
