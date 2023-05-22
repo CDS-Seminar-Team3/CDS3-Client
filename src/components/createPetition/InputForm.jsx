@@ -12,7 +12,9 @@ const InputForm = () => {
   const [links, setLinks] = useState(['']);
 
   const addLink = () => {
-    setLinks([...links, '']);
+    if (links.length < 10) {
+      setLinks([...links, '']);
+    }
   };
 
   const onChangeCategory = e => {
@@ -87,7 +89,7 @@ const InputForm = () => {
           })}
           <button onClick={addLink}>
             <IcLinkAdd />
-            <div>링크 추가</div>
+            <div>링크 추가 ({links.length}/10)</div>
           </button>
         </div>
       </div>
