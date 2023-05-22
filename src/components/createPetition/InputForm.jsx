@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
@@ -9,17 +9,28 @@ const InputForm = () => {
   const [category, setCategory] = useRecoilState(categoryState);
   const [title, setTitle] = useRecoilState(titleState);
   const [content, setContent] = useRecoilState(contentState);
+  const [links, setLinks] = useState(['']);
 
-  const handleCategory = e => {
+  const addLink = () => {
+    setLinks([...links, '']);
+  };
+
+  const onChangeCategory = e => {
     setCategory(e.target.value);
   };
 
-  const handleTitle = e => {
+  const onChangeTitle = e => {
     setTitle(e.target.value);
   };
 
-  const handleContent = e => {
+  const onChangeContent = e => {
     setContent(e.target.value);
+  };
+
+  const onChangeLink = (index, value) => {
+    const currentLink = [...links];
+    currentLink[index] = value;
+    setLinks(currentLink);
   };
 
   return (
@@ -31,7 +42,7 @@ const InputForm = () => {
             <IcRedDot />
           </span>
         </h3>
-        <select value={category} onChange={handleCategory}>
+        <select value={category} onChange={onChangeCategory}>
           <option>카테고리를 선택해주세요.</option>
           <option>편성</option>
           <option>보도</option>
@@ -50,7 +61,7 @@ const InputForm = () => {
             <IcRedDot />
           </span>
         </h3>
-        <input value={title} onChange={handleTitle} placeholder="제목을 입력해주세요." />
+        <input value={title} onChange={onChangeTitle} placeholder="제목을 입력해주세요." />
       </div>
       <div>
         <h3>
@@ -59,13 +70,22 @@ const InputForm = () => {
             <IcRedDot />
           </span>
         </h3>
-        <textarea value={content} onChange={handleContent} className="contentInput" placeholder="청원 내용을 입력해주세요." />
+        <textarea
+          value={content}
+          onChange={onChangeContent}
+          className="contentInput"
+          placeholder="청원 내용을 입력해주세요."
+        />
       </div>
       <div>
         <h3>링크</h3>
         <div className="buttonWrapper">
-          <input />
-          <button>
+          {links.map((link, index) => {
+            return (
+              <input key={index} value={link} onChange={e => onChangeLink(index, e.target.value)} />
+            );
+          })}
+          <button onClick={addLink}>
             <IcLinkAdd />
             <div>링크 추가</div>
           </button>
