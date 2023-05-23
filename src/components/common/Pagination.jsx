@@ -9,7 +9,7 @@ import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 const Pagination = () => {
   const paginationLength = Math.ceil(DATA.length / 10);
   const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
-
+  console.log(currentPage);
   const onClickPrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
