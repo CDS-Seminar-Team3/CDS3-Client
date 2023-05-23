@@ -137,8 +137,8 @@ const St = {
       props.center &&
       `
  justify-content: ${props.center};
-
 `};
+    cursor: pointer;
   `,
 };
 
