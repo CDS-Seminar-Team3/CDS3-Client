@@ -10,7 +10,7 @@ import { currentMyPetitionPageState } from '../atoms/paginationAtom';
 
 
 const MyPetition = () => {
-  //const { data, isLoading, isError } = useGetMyPetition();
+  const { data, isLoading, isError } = useGetMyPetition();
 
   //page 하나에서 보여주는 요소의 개수
   const lengthPerPage = 10;

@@ -9,7 +9,7 @@ import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 const Pagination = () => {
   const paginationLength = Math.ceil(DATA.length / 10);
   const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
-  console.log(currentPage);
+
   const onClickPrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -22,12 +22,16 @@ const Pagination = () => {
     }
   };
 
+  const onClickPageNumber = index => {
+    setCurrentPage(index + 1);
+  };
+
   return (
     <St.PaginationWrapper>
       <IcPrevPage className="icPrevPage" onClick={onClickPrevPage} />
       {[...Array(paginationLength)].map((_, index) => {
         return (
-          <St.PageNumberWrapper key={index} isCurrent={index + 1 === currentPage ? true : false}>
+          <St.PageNumberWrapper key={index} isCurrent={index + 1 === currentPage ? true : false} onClick={() => onClickPageNumber(index)}>
             {index + 1}
           </St.PageNumberWrapper>
         );
@@ -67,6 +71,8 @@ const St = {
     margin-right: 1.6rem;
 
     ${theme.fonts.body1}
-    color: ${props => (props.isCurrent ? theme.colors.black : theme.colors.gray300)}
+    color: ${props => (props.isCurrent ? theme.colors.black : theme.colors.gray300)};
+
+    cursor: pointer;
   `,
 };
