@@ -21,7 +21,7 @@ const PetitionList = ({ data }) => {
             동의
           </St.TableCell>
         </St.TableHeader>
-        {data.map(item => (
+        {data?.map(item => (
           <St.TableRow key={item.id}>
             <St.TableCell flex="1">{item.id}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>

@@ -2,12 +2,16 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { IcNextPage, IcPrevPage } from '../../assets/icons/0_icons';
 import theme from '../../styles/theme';
+import { DATA } from '../../constants/data';
 
 const Pagination = () => {
+  const paginationLength = Math.ceil(DATA.length / 10);
   return (
     <St.PaginationWrapper>
       <IcPrevPage className="icPrevPage" />
-      <span>1</span>
+      {[...Array(paginationLength)].map((_, index) => {
+        return <span key={index}>{index + 1}</span>;
+      })}
       <IcNextPage className="icNextPage" />
     </St.PaginationWrapper>
   );
