@@ -11,3 +11,5 @@ export { ReactComponent as IcYoutube } from '../icons/IcYoutube.svg';
 export { ReactComponent as IcMore } from '../icons/IcMore.svg';
 export { ReactComponent as IcRedDot } from '../icons/IcRedDot.svg';
 export { ReactComponent as IcLinkAdd } from '../icons/IcLinkAdd.svg';
+export { ReactComponent as IcPrevPage } from '../icons/IcPrevPage.svg';
+export { ReactComponent as IcNextPage } from '../icons/IcNextPage.svg';
