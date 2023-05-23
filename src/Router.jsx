@@ -5,6 +5,7 @@ import CreatePetition from './pages/CreatePetition';
 import Main from './pages/Main';
 
 import PetitionDetail from './pages/PetitionDetail';
+import MyPetition from './pages/MyPetition';
 
 const Router = () => {
   return (
@@ -20,7 +21,7 @@ const Router = () => {
             배열 인덱스로 navigate 해주시면 될 것 같습니다!*/}
             <Route path="/petitionDetail/:petitionId" element={<PetitionDetail />} />
           </Route>
-          <Route path="/myPetition" element={<div>my(pages 폴더에 페이지 만들어서 import)</div>} />
+          <Route path="/myPetition" element={<MyPetition />} />
           <Route path="/createPetition" element={<CreatePetition />} />
         </Routes>
       </PageLayout>
