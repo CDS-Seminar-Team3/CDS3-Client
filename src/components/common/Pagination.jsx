@@ -26,7 +26,11 @@ const Pagination = () => {
     <St.PaginationWrapper>
       <IcPrevPage className="icPrevPage" onClick={onClickPrevPage} />
       {[...Array(paginationLength)].map((_, index) => {
-        return <span key={index}>{index + 1}</span>;
+        return (
+          <St.PageNumberWrapper key={index} isCurrent={index + 1 === currentPage ? true : false}>
+            {index + 1}
+          </St.PageNumberWrapper>
+        );
       })}
       <IcNextPage className="icNextPage" onClick={onClickNextPage} />
     </St.PaginationWrapper>
@@ -48,7 +52,7 @@ const St = {
 
     & > .icPrevPage {
       margin-right: 2.3rem;
-      
+
       cursor: pointer;
     }
 
@@ -57,12 +61,12 @@ const St = {
 
       cursor: pointer;
     }
+  `,
+  PageNumberWrapper: styled.div`
+    margin-left: 1.6rem;
+    margin-right: 1.6rem;
 
-    & > span {
-      margin-left: 1.6rem;
-      margin-right: 1.6rem;
-
-      ${theme.fonts.body1}
-    }
+    ${theme.fonts.body1}
+    color: ${props => (props.isCurrent ? theme.colors.black : theme.colors.gray300)}
   `,
 };
