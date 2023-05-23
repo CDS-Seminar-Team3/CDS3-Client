@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { IcNextPage, IcPrevPage } from '../../assets/icons/0_icons';
+import theme from '../../styles/theme';
 
 const Pagination = () => {
   return (
@@ -36,6 +37,8 @@ const St = {
     & > span {
       margin-left: 1.6rem;
       margin-right: 1.6rem;
+
+      ${theme.fonts.body1}
     }
   `,
 };

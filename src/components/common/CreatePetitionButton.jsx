@@ -14,7 +14,7 @@ const St = {
     height: 4.3rem;
     margin-bottom: 6.4rem;
 
-    ${theme.fonts}
+    ${theme.fonts.body3_bold}
     background-color: ${theme.colors.blue};
     color: ${theme.colors.white};
     border: none;
