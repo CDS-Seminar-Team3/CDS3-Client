@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
 import { categoryState, titleState, contentState } from '../../atoms/registerPetitionAtom';
-import { IcRedDot, IcLinkAdd } from '../../assets/icons/0_icons';
+import { IcRedDot, IcLinkAdd, IcDeleteLink } from '../../assets/icons/0_icons';
 
 const InputForm = () => {
   const [category, setCategory] = useRecoilState(categoryState);
@@ -12,7 +12,18 @@ const InputForm = () => {
   const [links, setLinks] = useState(['']);
 
   const addLink = () => {
-    setLinks([...links, '']);
+    if (links.length < 10) {
+      setLinks([...links, '']);
+    }
+  };
+
+  const deleteLink = index => {
+    const isDeleted = window.confirm('링크를 삭제하시겠습니까?');
+    if (isDeleted) {
+      const deletedLinks = [...links];
+      deletedLinks.splice(index, 1);
+      setLinks(deletedLinks);
+    }
   };
 
   const onChangeCategory = e => {
@@ -82,12 +93,19 @@ const InputForm = () => {
         <div className="buttonWrapper">
           {links.map((link, index) => {
             return (
-              <input key={index} value={link} onChange={e => onChangeLink(index, e.target.value)} />
+              <div key={index}>
+                <input value={link} onChange={e => onChangeLink(index, e.target.value)} />
+                {index > 0 ? (
+                  <IcDeleteLink className="deleteIcon" onClick={() => deleteLink(index)} />
+                ) : (
+                  <></>
+                )}
+              </div>
             );
           })}
           <button onClick={addLink}>
             <IcLinkAdd />
-            <div>링크 추가</div>
+            <div>링크 추가 ({links.length}/10)</div>
           </button>
         </div>
       </div>
@@ -170,15 +188,29 @@ const St = {
 
         width: 27.1rem;
 
-        & > input {
-          width: 27.1rem;
-          height: 4rem;
-          margin-bottom: 0.8rem;
-          padding-left: 1.6rem;
-          border: 0.1rem solid ${theme.colors.gray200};
+        & > div {
+          position: relative;
 
-          ${theme.fonts.body2}
-          color: ${theme.colors.gray800};
+          & > input {
+            width: 27.1rem;
+            height: 4rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.6rem;
+            padding-right: 3rem;
+            border: 0.1rem solid ${theme.colors.gray200};
+
+            ${theme.fonts.body2}
+            color: ${theme.colors.gray800};
+          }
+
+          & > .deleteIcon {
+            position: absolute;
+            //리팩토링 필요! refactor
+            bottom: 1.6rem;
+            right: 0.8rem;
+
+            cursor: pointer;
+          }
         }
 
         & > button {
