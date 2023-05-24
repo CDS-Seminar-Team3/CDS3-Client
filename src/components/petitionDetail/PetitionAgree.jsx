@@ -52,7 +52,7 @@ const St = {
       height: 4rem;
 
       padding: 1rem 1.6rem;
-      border: 1px solid ${theme.colors.gray200};
+      border: 0.1rem solid ${theme.colors.gray200};
       color: ${theme.colors.gray400};
     }
 
@@ -61,7 +61,7 @@ const St = {
       height: 4rem;
       padding: 1rem 1.6rem;
 
-      border-radius: 4px;
+      border-radius: 0.4rem;
       border: none;
 
       background-color: ${theme.colors.blue};
