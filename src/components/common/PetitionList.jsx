@@ -1,11 +1,28 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const PetitionList = ({ data }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = e => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      alert(e.target.value);
+    }
+  };
   return (
     <St.PetitionListWrapper>
-      <St.SearchInput placeholder="검색어를 입력하세요"></St.SearchInput>
+      <St.SearchInput
+        value={searchValue}
+        placeholder="검색어를 입력하세요"
+        onChange={handleSearch}
+        onKeyPress={handleKeyPress}
+      ></St.SearchInput>
       <section>
         <St.TableHeader>
           <St.TableHeaderCell flex="1">번호</St.TableHeaderCell>
