@@ -6,13 +6,18 @@ const useGetMyPetition = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  const config = {
+    headers: {
+      'user-id': 1,
+    },
+  };
+
   const getMyPetition = async () => {
     try {
       setIsLoading(true);
       setIsError(false);
-      const response = await axios.get(`https://13.125.247.147:8080/mypetition`);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/mypetition`, config);
       setData(response.data);
-      console.log(response);
     } catch (error) {
       setIsError(true);
       console.log(error);

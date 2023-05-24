@@ -2,12 +2,12 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { IcNextPage, IcPrevPage } from '../../assets/icons/0_icons';
 import theme from '../../styles/theme';
-import { DATA } from '../../constants/data';
 import { useRecoilState } from 'recoil';
 import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
+import PropTypes from 'prop-types';
 
-const Pagination = () => {
-  const paginationLength = Math.ceil(DATA.length / 10);
+const Pagination = ({ listLength }) => {
+  const paginationLength = Math.ceil(listLength / 10);
   const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
 
   const onClickPrevPage = () => {
@@ -31,7 +31,11 @@ const Pagination = () => {
       <IcPrevPage className="icPrevPage" onClick={onClickPrevPage} />
       {[...Array(paginationLength)].map((_, index) => {
         return (
-          <St.PageNumberWrapper key={index} isCurrent={index + 1 === currentPage ? true : false} onClick={() => onClickPageNumber(index)}>
+          <St.PageNumberWrapper
+            key={index}
+            isCurrent={index + 1 === currentPage ? true : false}
+            onClick={() => onClickPageNumber(index)}
+          >
             {index + 1}
           </St.PageNumberWrapper>
         );
@@ -42,6 +46,11 @@ const Pagination = () => {
 };
 
 export default Pagination;
+
+
+Pagination.propTypes = {
+  listLength: PropTypes.number,
+};
 
 const St = {
   PaginationWrapper: styled.div`

@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
 
-const PetitionList = ({ data }) => {
-  console.log(data?.data);
+const PetitionList = ({ data, slicedData }) => {
   const listData = data?.data;
   return (
     <St.PetitionListWrapper>
@@ -23,7 +22,7 @@ const PetitionList = ({ data }) => {
             동의
           </St.TableCell>
         </St.TableHeader>
-        {listData?.map(item => (
+        {slicedData?.map(item => (
           <St.TableRow key={item.petitionId}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
@@ -40,7 +39,9 @@ const PetitionList = ({ data }) => {
 
 PetitionList.propTypes = {
   data: PropTypes.array,
+  slicedData: PropTypes.array,
 };
+
 const St = {
   PetitionListWrapper: styled.div`
     display: flex;
@@ -71,7 +72,7 @@ const St = {
     outline: none;
 
     &::placeholder {
-      ${theme.colors.gray300}
+      color: ${theme.colors.gray300};
     }
   `,
 
