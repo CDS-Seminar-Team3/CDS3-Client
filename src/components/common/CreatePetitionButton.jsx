@@ -1,9 +1,16 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePetitionButton = () => {
-  return <St.CreatePetitionButtonWrapper>청원하기</St.CreatePetitionButtonWrapper>;
+  const navigate = useNavigate();
+
+  const onClickButton = () => {
+    navigate('/createPetition');
+  }
+
+  return <St.CreatePetitionButtonWrapper onClick={onClickButton}>청원하기</St.CreatePetitionButtonWrapper>;
 };
 
 export default CreatePetitionButton;

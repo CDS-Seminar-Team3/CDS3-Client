@@ -1,20 +1,30 @@
-import React from 'react';
-import PetitionList from '../components/common/PetitionList';
-import { DATA } from '../constants/data';
+import PetitionList from '../components/myPetition/MyPetitionList';
 import { styled } from 'styled-components';
 import theme from '../styles/theme';
-import Pagination from '../components/common/Pagination';
+import Pagination from '../components/myPetition/MyPetitionPagination';
 import CreatePetitionButton from '../components/common/CreatePetitionButton';
 import useGetMyPetition from '../hooks/useGetMyPetition';
+import { useRecoilValue } from 'recoil';
+import { currentMyPetitionPageState } from '../atoms/paginationAtom';
 
 const MyPetition = () => {
   const { data, isLoading, isError } = useGetMyPetition();
+  const petitionListData = data?.data;
+  const listLength = data ? data.data.length : 0;
+
+  const lengthPerPage = 10;
+  const currentPage = useRecoilValue(currentMyPetitionPageState);
+
+  const startIndex = (currentPage - 1) * lengthPerPage;
+  const endIndex = startIndex + lengthPerPage;
+  const slicedData = petitionListData?.slice(startIndex, endIndex);
+
 
   return (
     <St.MyPetitionWrapper>
       <St.PageNameWrapper>나의 청원</St.PageNameWrapper>
-      <PetitionList data={data} />
-      <Pagination />
+      <PetitionList data={data} slicedData={slicedData} />
+      <Pagination listLength={listLength}/>
       <CreatePetitionButton />
     </St.MyPetitionWrapper>
   );
