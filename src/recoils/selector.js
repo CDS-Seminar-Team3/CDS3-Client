@@ -5,6 +5,7 @@ export const currentPetitionSelector = selector({
   key: 'currentPetitionSelector',
   get: () => {
     const currentPetition = useGetCurrentPetition();
+
     return currentPetition;
   },
 });

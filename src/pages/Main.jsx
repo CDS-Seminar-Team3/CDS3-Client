@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 
 const Main = () => {
   const data = useRecoilValue(currentPetitionSelector);
-
+  console.log(data);
   useEffect(() => {}, [data]);
 
   return (
