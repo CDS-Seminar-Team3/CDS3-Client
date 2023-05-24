@@ -1,39 +1,79 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import Pagination from './MyPetitionPagination';
+import { useRecoilState } from 'recoil';
+import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 
 const PetitionList = ({ data, slicedData }) => {
-  const listData = data?.data;
+  const listData = data ? data?.data : [];
+
+  const [searchInput, setSearchInput] = useState('');
+  const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(currentMyPetitionPageState)
+
+  const searchedData = listData?.filter(item => item.title.includes(searchInput)) || [];
+
+  const lengthPerPage = 10;
+  const currentPage = currentMyPetitionPage;
+
+  const startIndex = (currentPage - 1) * lengthPerPage;
+  const endIndex = startIndex + lengthPerPage;
+  const slicedSearchedData = searchedData?.slice(startIndex, endIndex);
+
+  const onChangeSearchInput = e => {
+    setSearchInput(e.target.value);
+    setCurrentMyPetitionPage(1);
+  };
+
   return (
-    <St.PetitionListWrapper>
-      <St.SearchInput placeholder="검색어를 입력하세요"></St.SearchInput>
-      <section>
-        <St.TableHeader>
-          <St.TableCell flex="1" className="headerCell">
-            번호
-          </St.TableCell>
-          <St.TableCell flex="2" className="headerCell">
-            카테고리
-          </St.TableCell>
-          <St.TableCell flex="3" className="headerCell">
-            제목
-          </St.TableCell>
-          <St.TableCell flex="1" className="headerCell" textAlign="center">
-            동의
-          </St.TableCell>
-        </St.TableHeader>
-        {slicedData?.map(item => (
-          <St.TableRow key={item.petitionId}>
-            <St.TableCell flex="1">{item.petitionId}</St.TableCell>
-            <St.TableCell flex="2">{item.category}</St.TableCell>
-            <St.TableCell flex="3">{item.title}</St.TableCell>
-            <St.TableCell flex="1" textAlign="center">
-              {item.agreeNumber}
+    <>
+      <St.PetitionListWrapper>
+        <St.SearchInput
+          placeholder="검색어를 입력하세요"
+          value={searchInput}
+          onChange={onChangeSearchInput}
+        ></St.SearchInput>
+        <section>
+          <St.TableHeader>
+            <St.TableCell flex="1" className="headerCell">
+              번호
             </St.TableCell>
-          </St.TableRow>
-        ))}
-      </section>
-    </St.PetitionListWrapper>
+            <St.TableCell flex="2" className="headerCell">
+              카테고리
+            </St.TableCell>
+            <St.TableCell flex="3" className="headerCell">
+              제목
+            </St.TableCell>
+            <St.TableCell flex="1" className="headerCell" textAlign="center">
+              동의
+            </St.TableCell>
+          </St.TableHeader>
+          {searchInput === ''
+            ? slicedData?.map(item => (
+                <St.TableRow key={item.petitionId}>
+                  <St.TableCell flex="1">{item.petitionId}</St.TableCell>
+                  <St.TableCell flex="2">{item.category}</St.TableCell>
+                  <St.TableCell flex="3">{item.title}</St.TableCell>
+                  <St.TableCell flex="1" textAlign="center">
+                    {item.agreeNumber}
+                  </St.TableCell>
+                </St.TableRow>
+              ))
+            : slicedSearchedData?.map(item => (
+                <St.TableRow key={item.petitionId}>
+                  <St.TableCell flex="1">{item.petitionId}</St.TableCell>
+                  <St.TableCell flex="2">{item.category}</St.TableCell>
+                  <St.TableCell flex="3">{item.title}</St.TableCell>
+                  <St.TableCell flex="1" textAlign="center">
+                    {item.agreeNumber}
+                  </St.TableCell>
+                </St.TableRow>
+              ))}
+        </section>
+      </St.PetitionListWrapper>
+      <Pagination listLength={searchInput === '' ? listData.length : searchedData.length} />
+    </>
   );
 };
 
