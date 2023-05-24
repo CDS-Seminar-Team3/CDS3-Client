@@ -148,7 +148,6 @@ const St = {
 
     ${props =>
       props.center &&
-
       `
  justify-content: ${props.center};
 `};
