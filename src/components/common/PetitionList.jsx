@@ -1,28 +1,41 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const PetitionList = ({ data }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = e => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      alert(e.target.value);
+    }
+  };
   console.log(data?.data);
   const listData = data?.data;
+
   return (
     <St.PetitionListWrapper>
-      <St.SearchInput placeholder="검색어를 입력하세요"></St.SearchInput>
+      <St.SearchInput
+        value={searchValue}
+        placeholder="검색어를 입력하세요"
+        onChange={handleSearch}
+        onKeyPress={handleKeyPress}
+      ></St.SearchInput>
       <section>
         <St.TableHeader>
-          <St.TableCell flex="1" className="headerCell">
-            번호
-          </St.TableCell>
-          <St.TableCell flex="2" className="headerCell">
-            카테고리
-          </St.TableCell>
-          <St.TableCell flex="3" className="headerCell">
-            제목
-          </St.TableCell>
-          <St.TableCell flex="1" className="headerCell" textAlign="center">
+          <St.TableHeaderCell flex="1">번호</St.TableHeaderCell>
+          <St.TableHeaderCell flex="2">카테고리</St.TableHeaderCell>
+          <St.TableHeaderCell flex="3">제목</St.TableHeaderCell>
+          <St.TableHeaderCell flex="1" center="center">
             동의
-          </St.TableCell>
+          </St.TableHeaderCell>
         </St.TableHeader>
+
         {listData?.map(item => (
           <St.TableRow key={item.petitionId}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
@@ -54,6 +67,7 @@ const St = {
       display: flex;
       flex-direction: column;
 
+      height: 53rem;
       border: 2px solid ${theme.colors.gray100};
     }
   `,
@@ -62,7 +76,7 @@ const St = {
     height: 4.3rem;
     padding: 1.6rem 1.2rem;
     border: none;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 
     background-color: ${theme.colors.gray100};
     color: ${theme.colors.gray300};
@@ -71,7 +85,8 @@ const St = {
     outline: none;
 
     &::placeholder {
-      ${theme.colors.gray300}
+      ${theme.fonts.body1}
+      color:${theme.colors.gray300}
     }
   `,
 
@@ -79,40 +94,65 @@ const St = {
     display: flex;
     align-items: center;
 
-    padding: 1.6rem 0rem;
-    height: 0.3rem;
+    padding: 0 0.8rem;
+    height: 3rem;
 
     background-color: ${theme.colors.gray100};
     color: ${theme.colors.gray300};
     ${theme.fonts.caption2};
 
     & > .headerCell {
-      ${theme.fonts.caption2}
     }
+  `,
+  TableHeaderCell: styled.article`
+    display: flex;
+    ${props =>
+      props.center &&
+      `
+ justify-content: ${props.center};
+
+`};
+    align-items: center;
+
+    flex: ${props => props.flex || '1'};
+    padding: 0.8rem;
+    ${theme.fonts.caption2};
+    color: ${theme.colors.gray300};
+  `,
+  TableRowWrapper: styled.div`
+    height: 50rem;
+    padding-bottom: 2rem;
   `,
   TableRow: styled.div`
     display: flex;
     align-items: center;
 
-    border-bottom: 2px solid ${theme.colors.gray100};
-    padding: 0.6rem 0rem;
-    &:last-child {
+    border-bottom: 0.2rem solid ${theme.colors.gray100};
+    padding: 0 0.8rem;
+    height: 5rem;
+    /* &:last-child {
       border-bottom: none;
-    }
+    } */
   `,
 
   TableCell: styled.article`
+    display: flex;
+    align-items: center;
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
+
+    height: ${props => props.height}rem;
 
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
     ${props =>
-      props.textAlign &&
+      props.center &&
+
       `
-    text-align: ${props.textAlign};
-  `};
+ justify-content: ${props.center};
+`};
+    cursor: pointer;
   `,
 };
 
