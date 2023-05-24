@@ -3,6 +3,8 @@ import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
 
 const PetitionList = ({ data }) => {
+  console.log(data?.data);
+  const listData = data?.data;
   return (
     <St.PetitionListWrapper>
       <St.SearchInput placeholder="검색어를 입력하세요"></St.SearchInput>
@@ -21,13 +23,13 @@ const PetitionList = ({ data }) => {
             동의
           </St.TableCell>
         </St.TableHeader>
-        {data.map(item => (
-          <St.TableRow key={item.id}>
-            <St.TableCell flex="1">{item.id}</St.TableCell>
+        {listData?.map(item => (
+          <St.TableRow key={item.petitionId}>
+            <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
             <St.TableCell flex="3">{item.title}</St.TableCell>
             <St.TableCell flex="1" textAlign="center">
-              {item.agree}
+              {item.agreeNumber}
             </St.TableCell>
           </St.TableRow>
         ))}
@@ -106,7 +108,8 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props => props.textAlign &&
+    ${props =>
+      props.textAlign &&
       `
     text-align: ${props.textAlign};
   `};

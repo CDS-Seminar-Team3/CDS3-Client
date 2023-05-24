@@ -13,7 +13,7 @@ const MyPetition = () => {
   return (
     <St.MyPetitionWrapper>
       <St.PageNameWrapper>나의 청원</St.PageNameWrapper>
-      <PetitionList data={DATA} />
+      <PetitionList data={data} />
       <Pagination />
       <CreatePetitionButton />
     </St.MyPetitionWrapper>

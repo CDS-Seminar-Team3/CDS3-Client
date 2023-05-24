@@ -18,7 +18,6 @@ const useGetMyPetition = () => {
       setIsError(false);
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/mypetition`, config);
       setData(response.data);
-      console.log(response);
     } catch (error) {
       setIsError(true);
       console.log(error);
