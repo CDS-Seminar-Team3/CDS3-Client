@@ -26,20 +26,32 @@ const Pagination = ({ listLength }) => {
     setCurrentPage(index + 1);
   };
 
+  const renderPageNumbers = () => {
+    let startPage = 1;
+    let endPage = paginationLength;
+
+    startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
+    endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
+
+    const pages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <St.PageNumberWrapper
+          key={i}
+          isCurrent={i === currentPage}
+          onClick={() => onClickPageNumber(i - 1)}
+        >
+          {i}
+        </St.PageNumberWrapper>
+      );
+    }
+    return pages;
+  };
+
   return (
     <St.PaginationWrapper>
       <IcPrevPage className="icPrevPage" onClick={onClickPrevPage} />
-      {[...Array(paginationLength)].map((_, index) => {
-        return (
-          <St.PageNumberWrapper
-            key={index}
-            isCurrent={index + 1 === currentPage ? true : false}
-            onClick={() => onClickPageNumber(index)}
-          >
-            {index + 1}
-          </St.PageNumberWrapper>
-        );
-      })}
+      {renderPageNumbers()}
       <IcNextPage className="icNextPage" onClick={onClickNextPage} />
     </St.PaginationWrapper>
   );
