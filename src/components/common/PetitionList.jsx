@@ -1,30 +1,38 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { currentPetitionSelector } from '../../recoils/selector';
+import { useRecoilValue } from 'recoil';
 
-const PetitionList = ({ data }) => {
+const PetitionList = () => {
   const [searchValue, setSearchValue] = useState('');
+  const defaultData = useRecoilValue(currentPetitionSelector);
+  const [data, setData] = useState(defaultData);
+  useEffect(() => {
+    if (!searchValue) {
+      setData(defaultData);
+    }
+  }, [searchValue, data]);
 
   const handleSearch = e => {
     setSearchValue(e.target.value);
   };
 
-  const handleKeyPress = e => {
+  const handleEnter = e => {
     if (e.key === 'Enter') {
-      alert(e.target.value);
+      const filterData = defaultData.filter(item => item.title.includes(e.target.value));
+      setData(filterData);
     }
   };
-  // console.log(data?.data);
-  // const listData = data?.data;
-  console.log(data);
+
   return (
     <St.PetitionListWrapper>
       <St.SearchInput
         value={searchValue}
         placeholder="검색어를 입력하세요"
         onChange={handleSearch}
-        onKeyPress={handleKeyPress}
+        onKeyPress={handleEnter}
       ></St.SearchInput>
       <section>
         <St.TableHeader>
@@ -41,7 +49,7 @@ const PetitionList = ({ data }) => {
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
             <St.TableCell flex="3">{item.title}</St.TableCell>
-            <St.TableCell flex="1" textAlign="center">
+            <St.TableCell flex="1" center="center" display="flex">
               {item.agreeNumber}
             </St.TableCell>
           </St.TableRow>
@@ -126,22 +134,23 @@ const St = {
   TableRow: styled.div`
     display: flex;
     align-items: center;
-
+    position: relative;
     border-bottom: 0.2rem solid ${theme.colors.gray100};
     padding: 0 0.8rem;
     height: 5rem;
-    /* &:last-child {
-      border-bottom: none;
-    } */
   `,
 
   TableCell: styled.article`
-    display: flex;
+    display: block;
+
+    ${props =>
+      props.display &&
+      `
+    display: ${props.display};
+  `}
     align-items: center;
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
-
-    height: ${props => props.height}rem;
 
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
@@ -152,6 +161,10 @@ const St = {
  justify-content: ${props.center};
 `};
     cursor: pointer;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   `,
 };
 

@@ -5,12 +5,13 @@ import PageName from '../components/common/PageName';
 import { DATA } from '../constants/data';
 import PetitionHeader from '../components/currentPetition/PetitionHeader';
 import { currentPetitionSelector } from '../recoils/selector';
+
 import { useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 
 const Main = () => {
   const data = useRecoilValue(currentPetitionSelector);
-  console.log('메인데이터확인' + JSON.stringify(data, 2, null));
+  // console.log('메인데이터확인' + JSON.stringify(data, 2, null));
   useEffect(() => {}, [data]);
 
   return (
