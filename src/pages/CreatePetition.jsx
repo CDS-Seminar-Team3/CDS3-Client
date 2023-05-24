@@ -9,7 +9,6 @@ const CreatePetition = () => {
       <CreatePetitionPageName/>
       <Caution />
       <InputForm />
-      <PetitionButtons />
     </div>
   );
 };

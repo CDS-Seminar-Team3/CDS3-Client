@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import theme from '../../styles/theme';
 import { categoryState, titleState, contentState } from '../../atoms/registerPetitionAtom';
 import { IcRedDot, IcLinkAdd, IcDeleteLink } from '../../assets/icons/0_icons';
+import PetitionButtons from './PetitionButtons';
 
 const InputForm = () => {
   const [category, setCategory] = useRecoilState(categoryState);
@@ -11,8 +12,14 @@ const InputForm = () => {
   const [content, setContent] = useRecoilState(contentState);
   const [links, setLinks] = useState(['']);
 
-  const addLink = () => {
+  const data = {
+    category: category,
+    title: title,
+    content: content,
+    urls: links,
+  };
 
+  const addLink = () => {
     setLinks([...links, '']);
 
     if (links.length < 10) {
@@ -27,7 +34,6 @@ const InputForm = () => {
       deletedLinks.splice(index, 1);
       setLinks(deletedLinks);
     }
-
   };
 
   const onChangeCategory = e => {
@@ -49,78 +55,80 @@ const InputForm = () => {
   };
 
   return (
-    <St.InputFormWrapper>
-      <div>
-        <h3>
-          카테고리
-          <span>
-            <IcRedDot />
-          </span>
-        </h3>
-        <select value={category} onChange={onChangeCategory}>
-          <option>카테고리를 선택해주세요.</option>
-          <option>편성</option>
-          <option>보도</option>
-          <option>프로그램</option>
-          <option>방송기술</option>
-          <option>방송경영</option>
-          <option>SNS·홈페이지</option>
-          <option>시청자권익</option>
-          <option>기타</option>
-        </select>
-      </div>
-      <div>
-        <h3>
-          제목
-          <span>
-            <IcRedDot />
-          </span>
-        </h3>
-        <input value={title} onChange={onChangeTitle} placeholder="제목을 입력해주세요." />
-      </div>
-      <div>
-        <h3>
-          내용
-          <span>
-            <IcRedDot />
-          </span>
-        </h3>
-        <textarea
-          value={content}
-          onChange={onChangeContent}
-          className="contentInput"
-          placeholder="청원 내용을 입력해주세요."
-        />
-      </div>
-      <div>
-        <h3>링크</h3>
-        <div className="buttonWrapper">
-          {links.map((link, index) => {
-            return (
-
-              <div key={index}>
-                <input value={link} onChange={e => onChangeLink(index, e.target.value)} />
-                {index > 0 ? (
-                  <IcDeleteLink className="deleteIcon" onClick={() => deleteLink(index)} />
-                ) : (
-                  <></>
-                )}
-              </div>
-            );
-          })}
-          <button onClick={addLink}>
-            <IcLinkAdd />
-            <div>링크 추가 ({links.length}/10)</div>
-          </button>
+    <>
+      <St.InputFormWrapper>
+        <div>
+          <h3>
+            카테고리
+            <span>
+              <IcRedDot />
+            </span>
+          </h3>
+          <select value={category} onChange={onChangeCategory}>
+            <option>카테고리를 선택해주세요.</option>
+            <option>편성</option>
+            <option>보도</option>
+            <option>프로그램</option>
+            <option>방송기술</option>
+            <option>방송경영</option>
+            <option>SNS·홈페이지</option>
+            <option>시청자권익</option>
+            <option>기타</option>
+          </select>
         </div>
-      </div>
-      <div className="InfoRequiredFields">
-        <span>
-          <IcRedDot />
-        </span>
-        표시된 항목은 필수 입력사항입니다.
-      </div>
-    </St.InputFormWrapper>
+        <div>
+          <h3>
+            제목
+            <span>
+              <IcRedDot />
+            </span>
+          </h3>
+          <input value={title} onChange={onChangeTitle} placeholder="제목을 입력해주세요." />
+        </div>
+        <div>
+          <h3>
+            내용
+            <span>
+              <IcRedDot />
+            </span>
+          </h3>
+          <textarea
+            value={content}
+            onChange={onChangeContent}
+            className="contentInput"
+            placeholder="청원 내용을 입력해주세요."
+          />
+        </div>
+        <div>
+          <h3>링크</h3>
+          <div className="buttonWrapper">
+            {links.map((link, index) => {
+              return (
+                <div key={index}>
+                  <input value={link} onChange={e => onChangeLink(index, e.target.value)} />
+                  {index > 0 ? (
+                    <IcDeleteLink className="deleteIcon" onClick={() => deleteLink(index)} />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              );
+            })}
+            <button onClick={addLink}>
+              <IcLinkAdd />
+              <div>링크 추가 ({links.length}/10)</div>
+            </button>
+          </div>
+        </div>
+        <div className="InfoRequiredFields">
+          <span>
+            <IcRedDot />
+          </span>
+          표시된 항목은 필수 입력사항입니다.
+        </div>
+      </St.InputFormWrapper>
+      <PetitionButtons data={data} />
+    </>
   );
 };
 
