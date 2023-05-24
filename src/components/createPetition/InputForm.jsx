@@ -12,6 +12,9 @@ const InputForm = () => {
   const [links, setLinks] = useState(['']);
 
   const addLink = () => {
+
+    setLinks([...links, '']);
+
     if (links.length < 10) {
       setLinks([...links, '']);
     }
@@ -24,6 +27,7 @@ const InputForm = () => {
       deletedLinks.splice(index, 1);
       setLinks(deletedLinks);
     }
+
   };
 
   const onChangeCategory = e => {
@@ -93,6 +97,7 @@ const InputForm = () => {
         <div className="buttonWrapper">
           {links.map((link, index) => {
             return (
+
               <div key={index}>
                 <input value={link} onChange={e => onChangeLink(index, e.target.value)} />
                 {index > 0 ? (
