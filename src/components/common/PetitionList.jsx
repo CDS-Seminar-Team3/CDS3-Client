@@ -15,9 +15,9 @@ const PetitionList = ({ data }) => {
       alert(e.target.value);
     }
   };
-  console.log(data?.data);
-  const listData = data?.data;
-
+  // console.log(data?.data);
+  // const listData = data?.data;
+  console.log(data);
   return (
     <St.PetitionListWrapper>
       <St.SearchInput
@@ -36,7 +36,7 @@ const PetitionList = ({ data }) => {
           </St.TableHeaderCell>
         </St.TableHeader>
 
-        {listData?.map(item => (
+        {data.map(item => (
           <St.TableRow key={item.petitionId}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>

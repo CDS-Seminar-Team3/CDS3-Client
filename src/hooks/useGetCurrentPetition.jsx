@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const useGetCurrentPetition = () => {
-  const [data, setData] = useState();
-
+const useGetCurrentPetition = async () => {
   const config = {
     headers: {
       'user-id': 1,
@@ -11,20 +9,18 @@ const useGetCurrentPetition = () => {
     },
   };
 
-  const getCurrentPetition = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/main`, config);
-      console.log(
-        'hook에서 받아온 데이터: ' + JSON.stringify(response.data.data.newPetitionList, null, 2)
-      );
-      setData(response.data.data.newPetitionList);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  getCurrentPetition();
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/main`, config);
+    console.log(
+      'hook에서 받아온 데이터: ' + JSON.stringify(response.data.data.newPetitionList, null, 2)
+    );
+    return response.data.data.newPetitionList;
+    //   setData(JSON.stringify(response.data.data.newPetitionList));
+  } catch (e) {
+    console.error(e);
+  }
 
-  return { data };
+  //   console.log(response.data.data.newPetitionList + '마지막확인');
 };
 
 export default useGetCurrentPetition;
