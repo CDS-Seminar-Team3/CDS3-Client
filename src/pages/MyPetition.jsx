@@ -5,12 +5,15 @@ import { styled } from 'styled-components';
 import theme from '../styles/theme';
 import Pagination from '../components/common/Pagination';
 import CreatePetitionButton from '../components/common/CreatePetitionButton';
+import useGetMyPetition from '../hooks/useGetMyPetition';
 
 const MyPetition = () => {
+  const { data, isLoading, isError } = useGetMyPetition();
+
   return (
     <St.MyPetitionWrapper>
       <St.PageNameWrapper>나의 청원</St.PageNameWrapper>
-      <PetitionList data={DATA} />
+      <PetitionList data={data} />
       <Pagination />
       <CreatePetitionButton />
     </St.MyPetitionWrapper>
