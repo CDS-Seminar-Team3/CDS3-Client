@@ -3,9 +3,8 @@ import useGetCurrentPetition from '../hooks/useGetCurrentPetition';
 
 export const currentPetitionSelector = selector({
   key: 'currentPetitionSelector',
-  get: () => {
-    const currentPetition = useGetCurrentPetition();
-
-    return currentPetition;
+  get: async () => {
+    const currentPetition = await useGetCurrentPetition();
+    return currentPetition.newPetitionList;
   },
 });
