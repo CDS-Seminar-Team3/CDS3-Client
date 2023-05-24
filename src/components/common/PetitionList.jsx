@@ -15,6 +15,9 @@ const PetitionList = ({ data }) => {
       alert(e.target.value);
     }
   };
+  console.log(data?.data);
+  const listData = data?.data;
+
   return (
     <St.PetitionListWrapper>
       <St.SearchInput
@@ -32,24 +35,17 @@ const PetitionList = ({ data }) => {
             동의
           </St.TableHeaderCell>
         </St.TableHeader>
-        <St.TableRowWrapper>
-          {data.map(item => (
-            <St.TableRow key={item.id}>
-              <St.TableCell flex="1" height="5">
-                {item.id}
-              </St.TableCell>
-              <St.TableCell flex="2" height="5">
-                {item.category}
-              </St.TableCell>
-              <St.TableCell flex="3" height="5">
-                {item.title}
-              </St.TableCell>
-              <St.TableCell flex="1" height="5" center="center">
-                {item.agree}
-              </St.TableCell>
-            </St.TableRow>
-          ))}
-        </St.TableRowWrapper>
+
+        {listData?.map(item => (
+          <St.TableRow key={item.petitionId}>
+            <St.TableCell flex="1">{item.petitionId}</St.TableCell>
+            <St.TableCell flex="2">{item.category}</St.TableCell>
+            <St.TableCell flex="3">{item.title}</St.TableCell>
+            <St.TableCell flex="1" textAlign="center">
+              {item.agreeNumber}
+            </St.TableCell>
+          </St.TableRow>
+        ))}
       </section>
     </St.PetitionListWrapper>
   );
@@ -152,6 +148,7 @@ const St = {
 
     ${props =>
       props.center &&
+
       `
  justify-content: ${props.center};
 `};
