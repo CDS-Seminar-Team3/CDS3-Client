@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
@@ -7,6 +8,7 @@ import { ReactComponent as IcMenu } from '../../assets/icons/IcMenu.svg';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <St.HeaderWrapper>
@@ -17,7 +19,7 @@ const Header = () => {
         <span className="headerTitle">KBS 시청자 센터</span>
       </St.TitleMenu>
       <St.PageMenu>
-        <span>청원하기</span>
+        <span onClick={() => navigate()}>청원하기</span>
         <span className="iconMore" onClick={() => setMenu(!menu)}>
           <IcMore>{menu ? 'Close' : 'Open'}</IcMore>
         </span>
