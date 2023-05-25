@@ -11,11 +11,16 @@ ex) <PageName button={<Button />}>최근 청원</PageName>
 }
 
 const PageName = ({ children, button }) => {
-  return <St.PageNameWrapper>{children}{button}</St.PageNameWrapper>;
+  return (
+    <St.PageNameWrapper>
+      {children}
+      {button}
+    </St.PageNameWrapper>
+  );
 };
 
 PageName.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.string.isRequired,
   button: PropTypes.node, // button 은 isRequired 를 제외함으로써 선택적으로
 };
 
@@ -23,8 +28,11 @@ export default PageName;
 
 const St = {
   PageNameWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    width: 33.5rem;
     margin-top: 2.4rem;
-    margin-left: 1.55rem;
     margin-bottom: 0.8rem;
 
     ${theme.fonts.head2};

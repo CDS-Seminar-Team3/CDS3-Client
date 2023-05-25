@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Header from './Header';
+import Footer from './Footer';
+import theme from '../../styles/theme';
 import DropDown from './DropDown';
 import theme from '../../styles/theme';
 
@@ -27,7 +29,7 @@ const PageLayout = props => {
           </ul>
         </DropDown>
         {children}
-        {/*푸터자리*/}
+        <Footer />
       </St.PageLayoutBox>
     </St.PageLayoutWrapper>
   );
@@ -53,6 +55,7 @@ const St = {
   `,
   PageLayoutBox: styled.div`
     width: 37.5rem;
+    background-color: ${theme.colors.white};
 
     .dropDown {
       width: 37.5rem;
