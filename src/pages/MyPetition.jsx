@@ -1,16 +1,14 @@
 import PetitionList from '../components/myPetition/MyPetitionList';
 import { styled } from 'styled-components';
 import theme from '../styles/theme';
-import Pagination from '../components/myPetition/MyPetitionPagination';
 import CreatePetitionButton from '../components/common/CreatePetitionButton';
 import useGetMyPetition from '../hooks/useGetMyPetition';
 import { useRecoilValue } from 'recoil';
 import { currentMyPetitionPageState } from '../atoms/paginationAtom';
 
 const MyPetition = () => {
-  const { data, isLoading, isError } = useGetMyPetition();
+  const { data } = useGetMyPetition();
   const petitionListData = data?.data;
-  const listLength = data ? data.data.length : 0;
 
   const lengthPerPage = 10;
   const currentPage = useRecoilValue(currentMyPetitionPageState);

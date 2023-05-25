@@ -114,8 +114,7 @@ const St = {
   `,
   TableHeaderCell: styled.article`
     display: flex;
-    ${props =>
-      props.center &&
+    ${props => props.center &&
       `
  justify-content: ${props.center};
 
