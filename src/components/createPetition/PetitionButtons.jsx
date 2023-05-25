@@ -11,14 +11,16 @@ import { styled } from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
 import usePostPetition from '../../hooks/usePostPetition';
+import { useNavigate } from 'react-router-dom';
 
-const PetitionButtons = ({data}) => {
+const PetitionButtons = ({ data }) => {
   const [isRegister, setIsRegister] = useRecoilState(isRegisterState);
   const category = useRecoilValue(categoryState);
   const title = useRecoilValue(titleState);
   const content = useRecoilValue(contentState);
   const checkCaution = useRecoilValue(checkCautionState);
-  const { isLoading, isError, postPetition} = usePostPetition();
+  const { isLoading, isError, postPetition } = usePostPetition();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (category !== '카테고리를 선택해주세요.' && title !== '' && content !== '' && checkCaution) {
@@ -29,13 +31,18 @@ const PetitionButtons = ({data}) => {
   }, [category, title, content, checkCaution]);
 
   const onClickRegister = () => {
-    postPetition(data);
-  }
+    if (isRegister) {
+      postPetition(data);
+      navigate('/myPetition');
+    }
+  };
 
   return (
     <St.PetitionButtonsWrapper isRegister={isRegister}>
       <button className="cancelButton">취소</button>
-      <button className="registerButton" onClick={onClickRegister}>등록</button>
+      <button className="registerButton" onClick={onClickRegister}>
+        등록
+      </button>
     </St.PetitionButtonsWrapper>
   );
 };
