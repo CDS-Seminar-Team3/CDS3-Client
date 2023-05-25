@@ -37,9 +37,13 @@ const PetitionButtons = ({ data }) => {
     }
   };
 
+  const onClickCancel = () => {
+    navigate(-1);
+  }
+
   return (
     <St.PetitionButtonsWrapper isRegister={isRegister}>
-      <button className="cancelButton">취소</button>
+      <button className="cancelButton" onClick={onClickCancel}>취소</button>
       <button className="registerButton" onClick={onClickRegister}>
         등록
       </button>
