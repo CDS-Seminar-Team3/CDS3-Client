@@ -3,12 +3,46 @@ import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { currentPetitionSelector } from '../../recoils/selector';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import Pagination from '../CurrentPetition/CurrentPetitionPagination';
+import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 
 const PetitionList = () => {
+  // const [searchValue, setSearchValue] = useState('');
+  // const defaultData = useRecoilValue(currentPetitionSelector);
+  // const [data, setData] = useState(defaultData);
+  // useEffect(() => {
+  //   if (!searchValue) {
+  //     setData(defaultData);
+  //   }
+  // }, [searchValue, data]);
+
+  // const handleSearch = e => {
+  //   setSearchValue(e.target.value);
+  // };
+
+  // const handleEnter = e => {
+  //   if (e.key === 'Enter') {
+  //     const filterData = defaultData.filter(item => item.title.includes(e.target.value));
+  //     setData(filterData);
+  //   }
+  // };
+
   const [searchValue, setSearchValue] = useState('');
   const defaultData = useRecoilValue(currentPetitionSelector);
   const [data, setData] = useState(defaultData);
+  const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(
+    currentMyPetitionPageState
+  );
+
+  const lengthPerPage = 10;
+
+  const currentPage = currentMyPetitionPage;
+
+  const startIndex = (currentPage - 1) * lengthPerPage;
+  const endIndex = startIndex + lengthPerPage;
+  const slicedSearchedData = data?.slice(startIndex, endIndex);
+
   useEffect(() => {
     if (!searchValue) {
       setData(defaultData);
@@ -17,6 +51,7 @@ const PetitionList = () => {
 
   const handleSearch = e => {
     setSearchValue(e.target.value);
+    setCurrentMyPetitionPage(1);
   };
 
   const handleEnter = e => {
@@ -44,7 +79,7 @@ const PetitionList = () => {
           </St.TableHeaderCell>
         </St.TableHeader>
 
-        {data.map(item => (
+        {slicedSearchedData.map(item => (
           <St.TableRow key={item.petitionId}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
@@ -55,6 +90,17 @@ const PetitionList = () => {
           </St.TableRow>
         ))}
       </section>
+      <Pagination
+        listLength={
+          data.length === 0
+            ? 1
+            : searchValue === ''
+            ? data.length
+            : data.length === 0
+            ? 1
+            : data.length
+        }
+      />
     </St.PetitionListWrapper>
   );
 };
@@ -114,7 +160,8 @@ const St = {
   `,
   TableHeaderCell: styled.article`
     display: flex;
-    ${props => props.center &&
+    ${props =>
+      props.center &&
       `
  justify-content: ${props.center};
 
