@@ -10,7 +10,9 @@ const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
 
   const [searchInput, setSearchInput] = useState('');
-  const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(currentMyPetitionPageState)
+  const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(
+    currentMyPetitionPageState
+  );
 
   const searchedData = listData?.filter(item => item.title.includes(searchInput)) || [];
 
@@ -26,6 +28,13 @@ const PetitionList = ({ data, slicedData }) => {
     setCurrentMyPetitionPage(1);
   };
 
+  const sliceTitle = title => {
+    if (title.length < 10) {
+      return title;
+    }
+    return title.slice(0, 10) + '...';
+  };
+
   return (
     <>
       <St.PetitionListWrapper>
@@ -34,7 +43,7 @@ const PetitionList = ({ data, slicedData }) => {
           value={searchInput}
           onChange={onChangeSearchInput}
         ></St.SearchInput>
-        <section>
+        <St.TableWrapper>
           <St.TableHeader>
             <St.TableCell flex="1" className="headerCell">
               번호
@@ -54,7 +63,7 @@ const PetitionList = ({ data, slicedData }) => {
                 <St.TableRow key={item.petitionId}>
                   <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                   <St.TableCell flex="2">{item.category}</St.TableCell>
-                  <St.TableCell flex="3">{item.title}</St.TableCell>
+                  <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
                   <St.TableCell flex="1" textAlign="center">
                     {item.agreeNumber}
                   </St.TableCell>
@@ -70,9 +79,9 @@ const PetitionList = ({ data, slicedData }) => {
                   </St.TableCell>
                 </St.TableRow>
               ))}
-        </section>
+        </St.TableWrapper>
       </St.PetitionListWrapper>
-      <Pagination listLength={searchInput === '' ? listData.length : searchedData.length} />
+      <Pagination listLength={searchInput === '' ? listData.length : searchedData.length === 0 ? 1 : searchedData.length} />
     </>
   );
 };
@@ -95,7 +104,7 @@ const St = {
       display: flex;
       flex-direction: column;
 
-      border: 2px solid ${theme.colors.gray100};
+      border: 0.2rem solid ${theme.colors.gray100};
     }
   `,
   SearchInput: styled.input`
@@ -135,8 +144,8 @@ const St = {
     display: flex;
     align-items: center;
 
-    border-bottom: 2px solid ${theme.colors.gray100};
-    padding: 0.6rem 0rem;
+    height: 5rem;
+    border-bottom: 0.2rem solid ${theme.colors.gray100};
     &:last-child {
       border-bottom: none;
     }
@@ -145,6 +154,7 @@ const St = {
   TableCell: styled.article`
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
+    padding-left: 1.6rem;
 
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
@@ -154,6 +164,9 @@ const St = {
       `
     text-align: ${props.textAlign};
   `};
+  `,
+  TableWrapper: styled.section`
+    height: 53.6rem;
   `,
 };
 
