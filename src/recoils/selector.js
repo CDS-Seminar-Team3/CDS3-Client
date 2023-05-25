@@ -8,3 +8,12 @@ export const currentPetitionSelector = selector({
     return currentPetition.newPetitionList;
   },
 });
+
+export const issuePetitionSelector = selector({
+  key: 'issuePetitionSelector',
+  get: async () => {
+    const issuePetition = await useGetCurrentPetition();
+    console.log(issuePetition.issuePetition);
+    return issuePetition.issuePetition;
+  },
+});
