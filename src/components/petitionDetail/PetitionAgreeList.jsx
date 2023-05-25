@@ -11,6 +11,7 @@ const PetitionAgreeList = () => {
   const agreeList = data ? data?.agreeList : [];
   const paginationLength = Math.ceil(agreeList.length / 5);
   const lengthPerPage = 5;
+  const maxPagesNumber = 5;
 
   const startIndex = (currentPage - 1) * lengthPerPage;
   const endIndex = startIndex + lengthPerPage;
@@ -36,8 +37,22 @@ const PetitionAgreeList = () => {
     let startPage = 1;
     let endPage = paginationLength;
 
-    startPage = Math.ceil(5 * (Math.ceil(currentPage / 5) - 1) + 1);
-    endPage = startPage < paginationLength / 5 ? startPage + 4 : paginationLength;
+    /* //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
+    startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
+    endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
+    */
+
+    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
+    if (currentPage > Math.floor(maxPagesNumber / 2)) {
+      startPage = currentPage - Math.floor(maxPagesNumber / 2);
+      endPage = startPage + maxPagesNumber - 1;
+      if (endPage > paginationLength) {
+        endPage = paginationLength;
+        startPage = endPage - maxPagesNumber + 1;
+      }
+    } else {
+      endPage = Math.min(maxPagesNumber, paginationLength);
+    }
 
     const pages = [];
     for (let i = startPage; i <= endPage; i++) {
@@ -90,7 +105,6 @@ const St = {
     padding-top: 0.8rem;
 
     background: ${theme.colors.gray100};
-
   `,
   UserName: styled.span`
     width: 5.6rem;
@@ -161,5 +175,5 @@ const St = {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  `
+  `,
 };
