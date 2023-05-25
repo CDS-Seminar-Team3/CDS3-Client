@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import useGetAgreeList from '../../hooks/useGetAgreeList';
 
 const PetitionAgree = () => {
+  const { data } = useGetAgreeList();
+
   const handleAgree = () => {
     alert('청원에 동의 하시겠습니까?');
   };
@@ -9,7 +12,7 @@ const PetitionAgree = () => {
     <St.PetitionAgreeWrapper>
       <St.AgreeHeader>
         <h1>
-          현재 <span>25 </span>명이 동참중입니다.
+          현재 <span>{data.agreeList.length}</span>명이 동참중입니다.
         </h1>
       </St.AgreeHeader>
       <St.InputWrapper>
@@ -25,8 +28,9 @@ const St = {
     display: flex;
     flex-direction: column;
 
-    width: 34.3rem;
-    margin: 2.4rem 0;
+    width: 33.5rem;
+    margin-top: 4.4rem;
+    margin-bottom: 1.6rem;
   `,
 
   AgreeHeader: styled.header`

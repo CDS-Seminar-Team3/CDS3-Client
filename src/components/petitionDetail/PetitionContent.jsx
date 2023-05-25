@@ -24,7 +24,6 @@ PetitionContent.propTypes = {
 const St = {
   PetitionContentWrapper: styled.div`
     width: 34.3rem;
-    height: 20.3rem;
 
     display: flex;
     flex-direction: column;
