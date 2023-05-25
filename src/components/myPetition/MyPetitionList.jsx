@@ -88,13 +88,7 @@ const PetitionList = ({ data, slicedData }) => {
       </St.PetitionListWrapper>
       <Pagination
         listLength={
-          listData.length === 0
-            ? 1
-            : searchInput === ''
-            ? listData.length
-            : searchedData.length === 0
-            ? 1
-            : searchedData.length
+          listData.length === 0 ? 1 : searchInput === '' ? listData.length : searchedData.length === 0 ? 1 : searchedData.length
         }
       />
     </>
@@ -174,8 +168,7 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props =>
-      props.textAlign &&
+    ${props => props.textAlign &&
       `
     text-align: ${props.textAlign};
   `};

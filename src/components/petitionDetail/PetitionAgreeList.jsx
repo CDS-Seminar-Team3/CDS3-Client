@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useGetAgreeList from '../../hooks/useGetAgreeList';
@@ -7,7 +6,7 @@ import { detailAgreedListPageState } from '../../atoms/paginationAtom';
 import { useRecoilState } from 'recoil';
 
 const PetitionAgreeList = () => {
-  const { data, isLoading, isError } = useGetAgreeList();
+  const { data } = useGetAgreeList();
   const [currentPage, setCurrentPage] = useRecoilState(detailAgreedListPageState);
   const agreeList = data ? data?.agreeList : [];
   const paginationLength = Math.ceil(agreeList.length / 5);
@@ -150,10 +149,7 @@ const St = {
 
     ${theme.fonts.body1}
     color: ${props => (props.isCurrent ? theme.colors.blue : theme.colors.gray400)};
-    border: ${props =>
-      props.isCurrent
-        ? `0.1rem solid ${theme.colors.blue}`
-        : `0.1rem solid ${theme.colors.gray400}`};
+    border: ${props => props.isCurrent ? `0.1rem solid ${theme.colors.blue}` : `0.1rem solid ${theme.colors.gray400}`};
 
     cursor: pointer;
   `,

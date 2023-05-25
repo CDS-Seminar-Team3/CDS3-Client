@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   categoryState,
@@ -19,7 +19,7 @@ const PetitionButtons = ({ data }) => {
   const title = useRecoilValue(titleState);
   const content = useRecoilValue(contentState);
   const checkCaution = useRecoilValue(checkCautionState);
-  const { isLoading, isError, postPetition } = usePostPetition();
+  const { postPetition } = usePostPetition();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const PetitionButtons = ({ data }) => {
 export default PetitionButtons;
 
 PetitionButtons.propTypes = {
-  data: PropTypes.node,
+  data: PropTypes.array,
 };
 
 const St = {

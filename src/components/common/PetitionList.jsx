@@ -15,7 +15,6 @@ const PetitionList = ({ data }) => {
       alert(e.target.value);
     }
   };
-  console.log(data?.data);
   const listData = data?.data;
 
   return (
@@ -106,8 +105,7 @@ const St = {
   `,
   TableHeaderCell: styled.article`
     display: flex;
-    ${props =>
-      props.center &&
+    ${props => props.center &&
       `
  justify-content: ${props.center};
 
@@ -146,8 +144,7 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props =>
-      props.center &&
+    ${props => props.center &&
 
       `
  justify-content: ${props.center};
