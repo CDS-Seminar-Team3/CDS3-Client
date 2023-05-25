@@ -8,6 +8,7 @@ import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 
 const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
+  //const listData = [];
 
   const [searchInput, setSearchInput] = useState('');
   const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(
@@ -29,10 +30,10 @@ const PetitionList = ({ data, slicedData }) => {
   };
 
   const sliceTitle = title => {
-    if (title.length < 10) {
+    if (title.length < 9) {
       return title;
     }
-    return title.slice(0, 10) + '...';
+    return title.slice(0, 9) + '...';
   };
 
   return (
@@ -58,30 +59,44 @@ const PetitionList = ({ data, slicedData }) => {
               동의
             </St.TableCell>
           </St.TableHeader>
-          {searchInput === ''
-            ? slicedData?.map(item => (
-                <St.TableRow key={item.petitionId}>
-                  <St.TableCell flex="1">{item.petitionId}</St.TableCell>
-                  <St.TableCell flex="2">{item.category}</St.TableCell>
-                  <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
-                  <St.TableCell flex="1" textAlign="center">
-                    {item.agreeNumber}
-                  </St.TableCell>
-                </St.TableRow>
-              ))
-            : slicedSearchedData?.map(item => (
-                <St.TableRow key={item.petitionId}>
-                  <St.TableCell flex="1">{item.petitionId}</St.TableCell>
-                  <St.TableCell flex="2">{item.category}</St.TableCell>
-                  <St.TableCell flex="3">{item.title}</St.TableCell>
-                  <St.TableCell flex="1" textAlign="center">
-                    {item.agreeNumber}
-                  </St.TableCell>
-                </St.TableRow>
-              ))}
+          {listData.length === 0 ? (
+            <St.EmptyList>아직 작성한 청원이 없습니다.</St.EmptyList>
+          ) : searchInput === '' ? (
+            slicedData?.map(item => (
+              <St.TableRow key={item.petitionId}>
+                <St.TableCell flex="1">{item.petitionId}</St.TableCell>
+                <St.TableCell flex="2">{item.category}</St.TableCell>
+                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
+                <St.TableCell flex="1" textAlign="center">
+                  {item.agreeNumber}
+                </St.TableCell>
+              </St.TableRow>
+            ))
+          ) : (
+            slicedSearchedData?.map(item => (
+              <St.TableRow key={item.petitionId}>
+                <St.TableCell flex="1">{item.petitionId}</St.TableCell>
+                <St.TableCell flex="2">{item.category}</St.TableCell>
+                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
+                <St.TableCell flex="1" textAlign="center">
+                  {item.agreeNumber}
+                </St.TableCell>
+              </St.TableRow>
+            ))
+          )}
         </St.TableWrapper>
       </St.PetitionListWrapper>
-      <Pagination listLength={searchInput === '' ? listData.length : searchedData.length === 0 ? 1 : searchedData.length} />
+      <Pagination
+        listLength={
+          listData.length === 0
+            ? 1
+            : searchInput === ''
+            ? listData.length
+            : searchedData.length === 0
+            ? 1
+            : searchedData.length
+        }
+      />
     </>
   );
 };
@@ -167,6 +182,14 @@ const St = {
   `,
   TableWrapper: styled.section`
     height: 53.6rem;
+  `,
+  EmptyList: styled.div`
+    margin-top: 4rem;
+
+    ${theme.fonts.body3}
+    color: ${theme.colors.gray400};
+
+    text-align: center;
   `,
 };
 
