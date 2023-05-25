@@ -1,43 +1,86 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { IcProgress, IcProgress2, IcProgress3 } from '../../assets/icons/0_icons';
+import PropTypes from 'prop-types';
 
-const PetitionInfo = () => {
+// 받은 날짜를 형식에 맞게 변환해주는 함수
+const formatDate = date => {
+  return date?.toLocaleDateString('ko-KR', {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+  });
+};
+
+const formatFourDigitDate = date => {
+  return date?.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+};
+
+const PetitionInfo = ({ data }) => {
+  const petitionData = data?.data;
+  const petitionDate = new Date(data?.data.createdAt);
+
+  const createdDate = formatDate(petitionDate);
+
+  const dueDateObject = new Date(petitionDate);
+  dueDateObject.setDate(dueDateObject.getDate() + 32);
+  const dueDate = formatDate(dueDateObject);
+
+  const finishDateObject = new Date(petitionDate);
+  finishDateObject.setDate(finishDateObject.getDate() + 64);
+  const finishDate = formatDate(finishDateObject);
+
+  const createdDateFourDigits = formatFourDigitDate(petitionDate);
+
+  const dueDateFourDigitsObject = new Date(petitionDate);
+  dueDateFourDigitsObject.setDate(dueDateFourDigitsObject.getDate() + 32);
+  const dueDateFourDigits = formatFourDigitDate(dueDateFourDigitsObject);
+
   return (
     <St.PetitionInfoWrapper>
       <span className="PetitionStatus">청원진행중</span>
       <St.Row className="PetitionTitle">
-        <span>[프로그램 #15674]</span>
-        <span>진짜가 나타났다</span>
+        <span>
+          [{petitionData?.category} #{petitionData?.agreeNumber}]
+        </span>
+        <span>{petitionData?.title}</span>
       </St.Row>
       <St.Row>
         <St.InfoItem>청원자</St.InfoItem>
-        <St.InfoContent>윤성*(sung2****)</St.InfoContent>
+        <St.InfoContent>
+          {petitionData?.name}({petitionData?.nickname})
+        </St.InfoContent>
       </St.Row>
       <St.Row>
         <St.InfoItem>청원기간</St.InfoItem>
-        <St.InfoContent>2023.05.07 ~ 2023.06.06</St.InfoContent>
+        <St.InfoContent>
+          {createdDateFourDigits} ~ {dueDateFourDigits}
+        </St.InfoContent>
       </St.Row>
       <St.Row className="AgreePetition">
         <St.AgreePetition>동의 수</St.AgreePetition>
-        <St.AgreePetitionNum>1</St.AgreePetitionNum>
+        <St.AgreePetitionNum>{petitionData?.agreeNumber}</St.AgreePetitionNum>
       </St.Row>
       <St.PetitionProgress>
         <St.ProgressBar />
         <St.ProgressDetail>
           <IcProgress />
           <span>청원 시작일</span>
-          <span>23.05.07</span>
+          <span>{createdDate}</span>
         </St.ProgressDetail>
         <St.ProgressDetail>
           <IcProgress2 />
           <span>청원 마감일</span>
-          <span>23.06.06</span>
+          <span>{dueDate}</span>
         </St.ProgressDetail>
         <St.ProgressDetail>
           <IcProgress3 />
           <span>답변 예상일</span>
-          <span>23.07.06</span>
+          <span>{finishDate}</span>
         </St.ProgressDetail>
       </St.PetitionProgress>
     </St.PetitionInfoWrapper>
@@ -45,6 +88,10 @@ const PetitionInfo = () => {
 };
 
 export default PetitionInfo;
+
+PetitionInfo.propTypes = {
+  data: PropTypes.object,
+};
 
 const St = {
   Row: styled.div`
