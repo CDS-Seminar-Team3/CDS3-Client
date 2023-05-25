@@ -5,3 +5,7 @@ export const currentMyPetitionPageState = atom({
   default: 1,
 });
 
+export const detailAgreedListPageState = atom({
+  key: 'agreedListPage',
+  default: 1,
+});
