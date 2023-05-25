@@ -18,7 +18,7 @@ const Header = () => {
         <span className="headerTitle">KBS 시청자 센터</span>
       </St.TitleMenu>
       <St.PageMenu>
-        <span onClick={() => navigate()}>청원하기</span>
+        <span onClick={() => navigate('/main')}>청원하기</span>
         <span className="iconMore" onClick={() => setMenu(!menu)}>
           <IcMore>{menu ? 'Close' : 'Open'}</IcMore>
         </span>
