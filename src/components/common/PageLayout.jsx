@@ -5,7 +5,6 @@ import Header from './Header';
 import Footer from './Footer';
 import theme from '../../styles/theme';
 import DropDown from './DropDown';
-import theme from '../../styles/theme';
 
 const PageLayout = props => {
   const { children } = props;
