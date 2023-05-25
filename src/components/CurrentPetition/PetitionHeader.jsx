@@ -1,25 +1,32 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { issuePetitionSelector } from '../../recoils/selector';
+import { useRecoilValue } from 'recoil';
 
 const PetitionHeader = () => {
+  // // const issuePetition = useRecoilValue(issuePetitionSelector);
+  const issuePetition = useRecoilValue(issuePetitionSelector);
+  console.log(issuePetition);
+  // console.log(issuePetition.category);
+
   return (
     <St.PetitionHeaderWrapper>
       <St.HeaderContainer>
-        <article>편성</article>
+        <article>{issuePetition.category}</article>
         <section>
           <span>동의수 </span>
-          <span>1,229</span>
+          <span>{issuePetition.agreeNumber}</span>
         </section>
       </St.HeaderContainer>
-      <h1>제목</h1>
+      <h1>{issuePetition.title}</h1>
       <St.FooterContainer>
         <section>
           <span>청원자</span>
-          <span>아이디</span>
+          <span>{issuePetition.nickname}</span>
         </section>
         <section>
           <span>청원마감</span>
-          <span>YYYY.05.21</span>
+          <span>{issuePetition.endDate}</span>
           <article>D-N</article>
         </section>
       </St.FooterContainer>

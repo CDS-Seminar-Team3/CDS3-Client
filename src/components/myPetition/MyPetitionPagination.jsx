@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { IcNextPage, IcPrevPage } from '../../assets/icons/0_icons';
 import theme from '../../styles/theme';
@@ -9,6 +8,7 @@ import PropTypes from 'prop-types';
 const Pagination = ({ listLength }) => {
   const paginationLength = Math.ceil(listLength / 10);
   const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
+  const maxPagesNumber = 5;
 
   const onClickPrevPage = () => {
     if (currentPage > 1) {
@@ -30,8 +30,22 @@ const Pagination = ({ listLength }) => {
     let startPage = 1;
     let endPage = paginationLength;
 
+    /* //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
     startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
     endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
+    */
+
+    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
+    if (currentPage > Math.floor(maxPagesNumber / 2)) {
+      startPage = currentPage - Math.floor(maxPagesNumber / 2);
+      endPage = startPage + maxPagesNumber - 1;
+      if (endPage > paginationLength) {
+        endPage = paginationLength;
+        startPage = endPage - maxPagesNumber + 1;
+      }
+    } else {
+      endPage = Math.min(maxPagesNumber, paginationLength);
+    }
 
     const pages = [];
     for (let i = startPage; i <= endPage; i++) {
@@ -58,7 +72,6 @@ const Pagination = ({ listLength }) => {
 };
 
 export default Pagination;
-
 
 Pagination.propTypes = {
   listLength: PropTypes.number,

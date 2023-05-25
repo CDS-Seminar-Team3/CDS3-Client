@@ -2,6 +2,7 @@ import PetitionInfo from '../components/petitionDetail/PetitionInfo';
 import PetitionContent from '../components/petitionDetail/PetitionContent';
 import { styled } from 'styled-components';
 import PetitionAgree from '../components/petitionDetail/PetitionAgree';
+import PetitionAgreeList from '../components/petitionDetail/PetitionAgreeList';
 import useGetPetitionInfo from '../hooks/useGetPetitionInfo.jsx';
 
 const PetitionDetail = () => {
@@ -11,6 +12,7 @@ const PetitionDetail = () => {
       <PetitionInfo data={data} />
       <PetitionContent data={data?.data.content} />
       <PetitionAgree />
+      <PetitionAgreeList />
     </St.PetitionDetailWrapper>
   );
 };
