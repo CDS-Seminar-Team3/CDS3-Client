@@ -42,7 +42,9 @@ const PetitionInfo = ({ data }) => {
 
   return (
     <St.PetitionInfoWrapper>
-      <span className="PetitionStatus">청원진행중</span>
+      <span className="PetitionStatus">
+        {petitionData?.expiration ? `청원 완료` : `청원 진행중`}
+      </span>
       <St.Row className="PetitionTitle">
         <span>
           [{petitionData?.category} #{petitionData?.agreeNumber}]
