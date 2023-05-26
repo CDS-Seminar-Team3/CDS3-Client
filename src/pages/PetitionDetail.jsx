@@ -4,12 +4,17 @@ import { styled } from 'styled-components';
 import PetitionAgree from '../components/petitionDetail/PetitionAgree';
 import PetitionAgreeList from '../components/petitionDetail/PetitionAgreeList';
 import useGetPetitionInfo from '../hooks/useGetPetitionInfo.jsx';
-
+import { useEffect } from 'react';
 
 const PetitionDetail = () => {
-  const { data, isLoading, isError } = useGetPetitionInfo();
+  const { data, isLoading, isError, getPetitionInfo } = useGetPetitionInfo();
   // const { data: agreeList } = useGetAgreeList();
   // console.log("asasd"+JSON.stringify(agreeList,2,null));
+
+  useEffect(() => {
+    getPetitionInfo();
+  }, [data]);
+
   return (
     <St.PetitionDetailWrapper>
       <PetitionInfo data={data} />

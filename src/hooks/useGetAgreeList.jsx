@@ -33,7 +33,7 @@ const useGetAgreeList = () => {
     getAgreeList();
   }, []);
 
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, getAgreeList };
 };
 
 export default useGetAgreeList;

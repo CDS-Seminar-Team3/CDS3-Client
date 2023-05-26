@@ -1,12 +1,19 @@
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useGetAgreeList from '../../hooks/useGetAgreeList';
 import { IcNextPage2, IcPrevPage2 } from '../../assets/icons/0_icons';
 import { detailAgreedListPageState } from '../../atoms/paginationAtom';
 import { useRecoilState } from 'recoil';
+import { agreeListState } from '../../atoms/agreePetitionAtom';
 
 const PetitionAgreeList = () => {
-  const { data } = useGetAgreeList();
+  const { data, getAgreeList } = useGetAgreeList();
+
+  useEffect(() => {
+    getAgreeList();
+  }, [data]);
+
   const [currentPage, setCurrentPage] = useRecoilState(detailAgreedListPageState);
   const agreeList = data ? data?.agreeList : [];
   const paginationLength = Math.ceil(agreeList.length / 5);
@@ -44,10 +51,9 @@ const PetitionAgreeList = () => {
     // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
     if (currentPage > Math.floor(maxPagesNumber / 2)) {
       startPage = currentPage - Math.floor(maxPagesNumber / 2);
-      if(endPage < maxPagesNumber){
+      if (endPage < maxPagesNumber) {
         endPage = startPage + paginationLength - 1;
-      }
-      else {
+      } else {
         endPage = startPage + maxPagesNumber - 1;
       }
       if (endPage > paginationLength) {
