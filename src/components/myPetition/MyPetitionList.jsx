@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Pagination from './MyPetitionPagination';
 import { useRecoilState } from 'recoil';
 import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
+import { Link } from 'react-router-dom';
 
 const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
@@ -89,7 +90,11 @@ const PetitionList = ({ data, slicedData }) => {
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                 <St.TableCell flex="2">{item.category}</St.TableCell>
-                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
+                <St.TableCell flex="3">
+                  <St.LinkWrapper to={`/petitionDetail/${item.petitionId}`}>
+                    {sliceTitle(item.title)}
+                  </St.LinkWrapper>
+                </St.TableCell>
                 <St.TableCell flex="1" textAlign="center">
                   {item.agreeNumber}
                 </St.TableCell>
@@ -100,7 +105,11 @@ const PetitionList = ({ data, slicedData }) => {
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                 <St.TableCell flex="2">{item.category}</St.TableCell>
-                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
+                <St.TableCell flex="3">
+                  <St.LinkWrapper to={`/petitionDetail/${item.petitionId}`}>
+                    {sliceTitle(item.title)}
+                  </St.LinkWrapper>
+                </St.TableCell>
                 <St.TableCell flex="1" textAlign="center">
                   {item.agreeNumber}
                 </St.TableCell>
@@ -213,6 +222,14 @@ const St = {
     color: ${theme.colors.gray400};
 
     text-align: center;
+  `,
+  LinkWrapper: styled(Link)`
+    color: ${theme.colors.black};
+    text-decoration: none;
+
+    &:visited {
+      color: ${theme.colors.gray400};
+    }
   `,
 };
 
