@@ -170,12 +170,13 @@ export const St = {
     }
 
     & > .iconMore {
-      cursor: pointer;
+      display: flex;
+      align-items: center;
     }
   `,
   DoPetition: styled.li`
     cursor: pointer;
-  `
+  `,
 };
 
 const slideDown = keyframes`

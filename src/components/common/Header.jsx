@@ -89,6 +89,9 @@ export const St = {
     }
 
     & > .iconMore {
+      display: flex;
+      align-items: center;
+      
       cursor: pointer;
     }
   `,
