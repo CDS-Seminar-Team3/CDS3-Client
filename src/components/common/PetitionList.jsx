@@ -6,28 +6,9 @@ import { currentPetitionSelector } from '../../recoils/selector';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import Pagination from '../CurrentPetition/CurrentPetitionPagination';
 import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
+import { useNavigate } from 'react-router-dom';
 
 const PetitionList = () => {
-  // const [searchValue, setSearchValue] = useState('');
-  // const defaultData = useRecoilValue(currentPetitionSelector);
-  // const [data, setData] = useState(defaultData);
-  // useEffect(() => {
-  //   if (!searchValue) {
-  //     setData(defaultData);
-  //   }
-  // }, [searchValue, data]);
-
-  // const handleSearch = e => {
-  //   setSearchValue(e.target.value);
-  // };
-
-  // const handleEnter = e => {
-  //   if (e.key === 'Enter') {
-  //     const filterData = defaultData.filter(item => item.title.includes(e.target.value));
-  //     setData(filterData);
-  //   }
-  // };
-
   const [searchValue, setSearchValue] = useState('');
   const defaultData = useRecoilValue(currentPetitionSelector);
   const [data, setData] = useState(defaultData);
@@ -43,6 +24,7 @@ const PetitionList = () => {
   const endIndex = startIndex + lengthPerPage;
   const slicedSearchedData = data?.slice(startIndex, endIndex);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (!searchValue) {
       setData(defaultData);
@@ -61,6 +43,9 @@ const PetitionList = () => {
     }
   };
 
+  const handleRowClick = id => {
+    navigate(`/petitionDetail/${id}`);
+  };
   return (
     <St.PetitionListWrapper>
       <St.SearchInput
@@ -80,7 +65,7 @@ const PetitionList = () => {
         </St.TableHeader>
 
         {slicedSearchedData.map(item => (
-          <St.TableRow key={item.petitionId}>
+          <St.TableRow key={item.petitionId} onClick={() => handleRowClick(item.petitionId)}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
             <St.TableCell flex="3">{item.title}</St.TableCell>
