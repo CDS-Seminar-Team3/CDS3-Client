@@ -5,13 +5,16 @@ import PetitionAgree from '../components/petitionDetail/PetitionAgree';
 import PetitionAgreeList from '../components/petitionDetail/PetitionAgreeList';
 import useGetPetitionInfo from '../hooks/useGetPetitionInfo.jsx';
 
+
 const PetitionDetail = () => {
   const { data, isLoading, isError } = useGetPetitionInfo();
+  // const { data: agreeList } = useGetAgreeList();
+  // console.log("asasd"+JSON.stringify(agreeList,2,null));
   return (
     <St.PetitionDetailWrapper>
       <PetitionInfo data={data} />
       <PetitionContent data={data?.data.content} />
-      <PetitionAgree />
+      <PetitionAgree/>
       <PetitionAgreeList />
     </St.PetitionDetailWrapper>
   );

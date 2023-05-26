@@ -82,7 +82,7 @@ const St = {
       justify-content: center;
       align-items: center;
 
-      width: 5.4rem;
+      width: 6.4rem;
       height: 2.3rem;
 
       border: 1px solid ${theme.colors.blue};
