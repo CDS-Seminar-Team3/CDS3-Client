@@ -55,64 +55,64 @@
   </ul>
   <br/></div>
 <h2> (개발자들) </h2>
-
 <table align="center">
     <tr align="center">
         <td style="min-width: 150px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/7aa610ff-fc78-460c-9a64-417b28d8df49" width="200" alt="프로필사진">
               <br />
-              <b>https://github.com/borimong</b>
+              <b>ljh0608</b>
             </a>
         </td>
-      <td style="min-width: 150px;">
+        <td style="min-width: 150px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/86b76119-439a-4340-8a15-5efeb79a0488" width="200" alt="프로필사진">
               <br />
-              <b>(깃허브계정명)</b>
+              <b>borimong</b>
             </a>
         </td>
-      <td style="min-width: 150px;">
+        <td style="min-width: 150px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://avatars.githubusercontent.com/u/92876819?v=4" width="200" alt="프로필사진">
               <br />
-              <b>(깃허브계정명)</b>
-            </a>
-        </td>
-      <td style="min-width: 150px;">
-            <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
-              <br />
-              <b>(깃허브계정명)</b>
+              <b>urjimyu</b>
             </a>
         </td>
     </tr>
     <tr align="center">
         <td>
             이재훈 <br/>
-      </td>
+        </td>
        <td>
             김현수 <br/>
       </td>
        <td>
-             <br/>
-      </td>
-       <td>
-            (이름) <br/>
+            유지민 <br/>
       </td>
     </tr>
   	<tr align="center">
         <td>
-            (서버연결) <br/>
+            메인뷰 <br/> 청원 동의하기
       </td>
        <td>
-            (서버연결) <br/>
+            나의 청원 <br/> 
       </td>
        <td>
-            (서버연결) <br/>
+            상세보기 뷰 <br/>
+      </td>
+    </tr>
+      	<tr align="center">
+        <td>
+            상세보기 청원 동의 API(POST) <br/>
+	    메인뷰 청원 리스트 API(GET)  <br/>
       </td>
        <td>
-            (서버연결) <br/>
+            상세보기 청원 동의 API(POST) <br/>
+	    메인뷰 청원 리스트 API(GET)  <br/>
+      </td>
+       <td>
+            상세보기 청원 정보 API(GET) <br/>
+	   상세보기 청원 리스트 API(GET)  <br/>
       </td>
     </tr>
 </table>
@@ -175,13 +175,19 @@
 └── 📁 src
   ├── 📁 assets
   │   └── 📁 icons
-	├── 📁atoms
+  ├─── 📁atoms
   ├── 📁components 
+  │   └── 📁 common
+  │   └── 📁 createPetition
+  │   └── 📁 CurrentPetition
+  │   └── 📁 myPetition
+  │   └── 📁 petitionDetail
   ├── 📁constants
-	├── 📁hooks
+  ├── 📁hooks
   ├── 📁pages
   ├── 📁recoils
-  └── 📁styles
+  ├── 📁styles
+  └── 📁utils
 
 ```
 
