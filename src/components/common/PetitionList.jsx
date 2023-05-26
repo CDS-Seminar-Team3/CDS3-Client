@@ -180,13 +180,7 @@ const St = {
   `,
 
   TableCell: styled.article`
-    display: block;
-
-    ${props =>
-      props.display &&
-      `
-    display: ${props.display};
-  `}
+    ${props => (props.display ? `display: ${props.display};` : `display: block;`)}
     ${props =>
       props.center &&
       `
