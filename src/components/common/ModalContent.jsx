@@ -1,15 +1,49 @@
-import React from 'react';
+import { useState, startTransition } from 'react';
 import ModalPortal from './ModalPortal';
-import { styled } from 'styled-components';
+import { styled, keyframes, css } from 'styled-components';
 import theme from '../../styles/theme';
-
-import { IcBlueDot } from '../../assets/icons/0_icons';
+import { IcBlueDot, IcMenu, IcMore } from '../../assets/icons/0_icons';
+import { useNavigate } from 'react-router-dom';
 
 const ModalContent = ({ onClose }) => {
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleAnimationEnd = () => {
+    if (!isVisible) {
+      onClose();
+    }
+  };
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
+  const onClickIcon = () => {
+    startTransition(() => {
+      navigate('/');
+      handleClose();
+    });
+  };
+
   return (
     <ModalPortal>
-      <St.Background onClick={onClose}>
-        <St.DropDown className="dropdown">
+      <St.HeaderTotalWrapper>
+        <St.HeaderWrapper>
+          <St.TitleMenu>
+            <span>
+              <IcMenu />
+            </span>
+            <span className="headerTitle">KBS 시청자 센터</span>
+          </St.TitleMenu>
+          <St.PageMenu>
+            <span>청원하기</span>
+            <span className="iconMore">
+              <IcMore onClick={handleClose} />
+            </span>
+          </St.PageMenu>
+        </St.HeaderWrapper>
+        <St.DropDown className="dropdown" isVisible={isVisible} onAnimationEnd={handleAnimationEnd}>
           <ul>
             <li>시청자위원회</li>
             <li>KBS 문화공간</li>
@@ -19,13 +53,14 @@ const ModalContent = ({ onClose }) => {
             <li>KBS ON 견학</li>
             <li>TV 비평</li>
             <li>1020 시청자위원회</li>
-            <li>
+            <St.DoPetition onClick={onClickIcon}>
               <IcBlueDot />
               청원하기
-            </li>
+            </St.DoPetition>
           </ul>
         </St.DropDown>
-      </St.Background>
+      </St.HeaderTotalWrapper>
+      <St.Background onClick={handleClose}></St.Background>
     </ModalPortal>
   );
 };
@@ -33,13 +68,24 @@ const ModalContent = ({ onClose }) => {
 export default ModalContent;
 
 export const St = {
+  HeaderTotalWrapper: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 37.5rem;
+  `,
   Background: styled.div`
-    z-index: 999;
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
     position: fixed;
     left: 0;
     top: 0;
@@ -47,40 +93,29 @@ export const St = {
     background-color: ${theme.colors.gray900};
   `,
   DropDown: styled.article`
-    position: relative;
     width: 37.5rem;
     height: 38.9rem;
 
-    top: -14.7rem;
-    left: 0;
     padding: 1rem;
 
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
-    z-index: 1;
 
     ul {
       width: 100%;
       height: 36.9rem;
 
-      top: 4.2rem;
-      left: 0;
-
       background-color: ${theme.colors.white};
-      z-index: 2;
 
       li {
         width: 35.5rem;
         height: 4.1rem;
 
-        top: 4.2rem;
-        left: 0;
         padding: 1rem;
         text-align: end;
 
         background-color: ${theme.colors.white};
         color: ${theme.colors.black};
-        z-index: 3;
 
         ${theme.fonts.head3}
         font-weight: 400;
@@ -94,5 +129,69 @@ export const St = {
         ${theme.fonts.head3}
       }
     }
+
+    animation: ${props =>
+      props.isVisible
+        ? css`
+            ${slideDown} 0.3s ease-out forwards
+          `
+        : css`
+            ${slideUp} 0.3s ease-out forwards
+          `};
   `,
+  HeaderWrapper: styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 4.2rem;
+    width: 37.5rem;
+
+    background-color: ${theme.colors.white};
+    border-bottom: 0.2rem solid ${theme.colors.gray200};
+  `,
+
+  TitleMenu: styled.div`
+    margin: 0.5rem 1.2rem 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+
+    & > .headerTitle {
+      ${theme.fonts.head3}
+    }
+  `,
+  PageMenu: styled.div`
+    display: flex;
+    align-items: center;
+
+    & > span {
+      ${theme.fonts.head3}
+      cursor: pointer;
+    }
+
+    & > .iconMore {
+      cursor: pointer;
+    }
+  `,
+  DoPetition: styled.li`
+    cursor: pointer;
+  `
 };
+
+const slideDown = keyframes`
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+`;

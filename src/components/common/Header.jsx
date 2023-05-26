@@ -23,7 +23,7 @@ const Header = () => {
   }, [isClicked, navigate]);
 
   const handleMoreClick = () => {
-    setMenu(!menu);
+    setMenu(true);
   };
 
   const handleCloseModal = () => {
