@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from '../styles/theme';
 import PetitionList from '../components/common/PetitionList';
 import PageName from '../components/common/PageName';
-import PetitionHeader from '../components/currentPetition/PetitionHeader';
+import PetitionHeader from '../components/CurrentPetition/PetitionHeader';
 import { issuePetitionSelector } from '../recoils/selector';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { useEffect } from 'react';
