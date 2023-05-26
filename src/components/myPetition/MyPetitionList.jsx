@@ -163,7 +163,7 @@ const St = {
     margin-bottom: 1rem;
 
     background-color: ${theme.colors.gray100};
-    color: ${theme.colors.gray300};
+    color: ${theme.colors.black};
     ${theme.fonts.body1};
 
     outline: none;

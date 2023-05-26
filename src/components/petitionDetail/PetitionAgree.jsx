@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import useGetAgreeList from '../../hooks/useGetAgreeList';
+ import useGetAgreeList from '../../hooks/useGetAgreeList';
+import usePostAgree from '../../hooks/usePostAgree';
+import { useState,useEffect ,useCallback} from 'react';
 
 const PetitionAgree = () => {
-  const { data } = useGetAgreeList();
+  const { data} = useGetAgreeList();
 
-  const handleAgree = () => {
-    alert('청원에 동의 하시겠습니까?');
-  };
+  const {postAgree}=usePostAgree();
+  const agreeContent="청원에 동의합니다.";
+  const handleAgree = useCallback(() => {
+    if (window.confirm("청원에 동의 하시겠습니까?")) {
+      postAgree({ agreeContent });
+    }
+  }, [postAgree, agreeContent]);
+
+  // useEffect(()=>{
+  //   setData([list]);
+  // },[data])
+  //
   return (
     <St.PetitionAgreeWrapper>
       <St.AgreeHeader>
@@ -16,7 +27,7 @@ const PetitionAgree = () => {
         </h1>
       </St.AgreeHeader>
       <St.InputWrapper>
-        <input type="text" value="청원에 동의합니다." readOnly />
+        <input type="text" value={agreeContent} readOnly />
 
         <button onClick={handleAgree}>동의</button>
       </St.InputWrapper>
