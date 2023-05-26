@@ -3,12 +3,30 @@ import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { currentPetitionSelector } from '../../recoils/selector';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import Pagination from '../CurrentPetition/CurrentPetitionPagination';
+import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
+import { useNavigate } from 'react-router-dom';
 
 const PetitionList = () => {
   const [searchValue, setSearchValue] = useState('');
   const defaultData = useRecoilValue(currentPetitionSelector);
   const [data, setData] = useState(defaultData);
+  const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(
+    currentMyPetitionPageState
+  );
+
+  const lengthPerPage = 10;
+  const currentPage = currentMyPetitionPage;
+  const startIndex = (currentPage - 1) * lengthPerPage;
+  const endIndex = startIndex + lengthPerPage;
+  const slicedSearchedData = data?.slice(startIndex, endIndex);
+
+  const [visitedRows, setVisitedRows] = useState(
+    JSON.parse(localStorage.getItem('visitedRows')) || []
+  );
+
+  const navigate = useNavigate();
   useEffect(() => {
     if (!searchValue) {
       setData(defaultData);
@@ -17,6 +35,7 @@ const PetitionList = () => {
 
   const handleSearch = e => {
     setSearchValue(e.target.value);
+    setCurrentMyPetitionPage(1);
   };
 
   const handleEnter = e => {
@@ -26,6 +45,13 @@ const PetitionList = () => {
     }
   };
 
+  const handleRowClick = id => {
+    navigate(`/petitionDetail/${id}`);
+    const updatedVisitedRows = [...visitedRows, id];
+    setVisitedRows(updatedVisitedRows);
+
+    localStorage.setItem('visitedRows', JSON.stringify(updatedVisitedRows));
+  };
   return (
     <St.PetitionListWrapper>
       <St.SearchInput
@@ -44,17 +70,30 @@ const PetitionList = () => {
           </St.TableHeaderCell>
         </St.TableHeader>
 
-        {data.map(item => (
-          <St.TableRow key={item.petitionId}>
+        {slicedSearchedData.map(item => (
+          <St.TableRow key={item.petitionId} onClick={() => handleRowClick(item.petitionId)}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
-            <St.TableCell flex="3">{item.title}</St.TableCell>
-            <St.TableCell flex="1" center="center" display="flex">
+            <St.TableCell flex="3" visited={visitedRows.includes(item.petitionId)} title={true}>
+              {item.title}
+            </St.TableCell>
+            <St.TableCell flex="1" center="center" display="flex" agree={item.agree}>
               {item.agreeNumber}
             </St.TableCell>
           </St.TableRow>
         ))}
       </section>
+      <Pagination
+        listLength={
+          data.length === 0
+            ? 1
+            : searchValue === ''
+            ? data.length
+            : data.length === 0
+            ? 1
+            : data.length
+        }
+      />
     </St.PetitionListWrapper>
   );
 };
@@ -87,7 +126,7 @@ const St = {
     margin-bottom: 0.8rem;
 
     background-color: ${theme.colors.gray100};
-    color: ${theme.colors.gray300};
+    color: ${theme.colors.black};
     ${theme.fonts.body1};
 
     outline: none;
@@ -114,7 +153,8 @@ const St = {
   `,
   TableHeaderCell: styled.article`
     display: flex;
-    ${props => props.center &&
+    ${props =>
+      props.center &&
       `
  justify-content: ${props.center};
 
@@ -140,13 +180,12 @@ const St = {
   `,
 
   TableCell: styled.article`
-    display: block;
-
+    ${props => (props.display ? `display: ${props.display};` : `display: block;`)}
     ${props =>
-      props.display &&
+      props.center &&
       `
-    display: ${props.display};
-  `}
+ justify-content: ${props.center};
+`};
     align-items: center;
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
@@ -154,16 +193,29 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props =>
-      props.center &&
-      `
- justify-content: ${props.center};
-`};
     cursor: pointer;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    ${props =>
+      props.agree &&
+      `
+    color:${theme.colors.blue};
+    `}
+
+    ${props =>
+      props.title &&
+      `
+      ${theme.fonts.body1};
+      color: ${theme.colors.black};
+    `}
+        ${props =>
+      props.visited &&
+      `
+      color: ${theme.colors.gray300};
+    `}
   `,
 };
 
