@@ -4,13 +4,15 @@ import PetitionList from '../components/common/PetitionList';
 import PageName from '../components/common/PageName';
 import PetitionHeader from '../components/currentPetition/PetitionHeader';
 import { issuePetitionSelector } from '../recoils/selector';
-
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { currentMyPetitionPageState } from '../atoms/paginationAtom';
+
 const Main = () => {
   const navigate = useNavigate();
   const issuePetition = useRecoilValue(issuePetitionSelector);
+  const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
 
   useEffect(() => {}, [issuePetition]);
 
@@ -21,7 +23,14 @@ const Main = () => {
         <PetitionHeader></PetitionHeader>
         <PageName
           button={
-            <St.MyPetitionBtn onClick={() => navigate('/myPetition')}>나의 청원</St.MyPetitionBtn>
+            <St.MyPetitionBtn
+              onClick={() => {
+                setCurrentPage(1);
+                navigate('/myPetition');
+              }}
+            >
+              나의 청원
+            </St.MyPetitionBtn>
           }
         >
           최근 청원
