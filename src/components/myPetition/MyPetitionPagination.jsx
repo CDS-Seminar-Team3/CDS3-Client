@@ -38,7 +38,12 @@ const Pagination = ({ listLength }) => {
     // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
     if (currentPage > Math.floor(maxPagesNumber / 2)) {
       startPage = currentPage - Math.floor(maxPagesNumber / 2);
-      endPage = startPage + maxPagesNumber - 1;
+      if(endPage < maxPagesNumber){
+        endPage = startPage + paginationLength - 1;
+      }
+      else {
+        endPage = startPage + maxPagesNumber - 1;
+      }
       if (endPage > paginationLength) {
         endPage = paginationLength;
         startPage = endPage - maxPagesNumber + 1;

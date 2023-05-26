@@ -41,11 +41,15 @@ const PetitionAgreeList = () => {
     startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
     endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
     */
-
     // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
     if (currentPage > Math.floor(maxPagesNumber / 2)) {
       startPage = currentPage - Math.floor(maxPagesNumber / 2);
-      endPage = startPage + maxPagesNumber - 1;
+      if(endPage < maxPagesNumber){
+        endPage = startPage + paginationLength - 1;
+      }
+      else {
+        endPage = startPage + maxPagesNumber - 1;
+      }
       if (endPage > paginationLength) {
         endPage = paginationLength;
         startPage = endPage - maxPagesNumber + 1;
@@ -163,7 +167,10 @@ const St = {
 
     ${theme.fonts.body1}
     color: ${props => (props.isCurrent ? theme.colors.blue : theme.colors.gray400)};
-    border: ${props => props.isCurrent ? `0.1rem solid ${theme.colors.blue}` : `0.1rem solid ${theme.colors.gray400}`};
+    border: ${props =>
+      props.isCurrent
+        ? `0.1rem solid ${theme.colors.blue}`
+        : `0.1rem solid ${theme.colors.gray400}`};
 
     cursor: pointer;
   `,
