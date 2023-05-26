@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ModalContent from './ModalContent';
 
 import { styled } from 'styled-components';
 import theme from '../../styles/theme';
 import { IcMenu, IcMore } from '../../assets/icons/0_icons';
-import DropDown from './DropDown';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
+  // const modalRef = useRef(null);
 
   useEffect(() => {
     const handleNavigation = () => {
@@ -21,6 +22,24 @@ const Header = () => {
       handleNavigation();
     }
   }, [isClicked, navigate]);
+
+  const handleMoreClick = () => {
+    setMenu(!menu);
+  };
+
+  // useEffect(() => {
+  //   const handleClickOutside = event => {
+  //     if (menu == true && !modalRef.current.contains(event.target)) {
+  //       setMenu(false);
+  //     }
+  //   };
+
+  //   window.addEventListener('click', handleClickOutside);
+
+  //   return () => {
+  //     window.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -33,12 +52,12 @@ const Header = () => {
         </St.TitleMenu>
         <St.PageMenu>
           <span onClick={() => setIsClicked(true)}>청원하기</span>
-          <span className="iconMore" onClick={() => setMenu(!menu)}>
+          <span className="iconMore" onClick={handleMoreClick}>
             <IcMore />
           </span>
         </St.PageMenu>
       </St.HeaderWrapper>
-      {menu && <DropDown visibility={menu} />}
+      {menu && <ModalContent />}
     </>
   );
 };
@@ -58,17 +77,8 @@ export const St = {
     height: 4.2rem;
     width: 37.5rem;
 
-    z-index: 1;
-
     background-color: ${theme.colors.white};
     border-bottom: 0.2rem solid ${theme.colors.gray200};
-
-    /* .dropDown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 2;
-    } */
   `,
 
   TitleMenu: styled.div`
