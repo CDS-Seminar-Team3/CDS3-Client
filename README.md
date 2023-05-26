@@ -1,13 +1,10 @@
 <div align="center">
-
-<h2> kbs 시청자 센터 </h2>
-
+<h1> 💙KBS 시청자 센터💙 </h1>
 <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/5a92f14d-43cb-41d6-b124-1baf0bdb3e73"  alt="서비스대표-이미지" />
-
 </div>
+<h4>KBS 시청자 센터의 [ 시청자 청원 기능 ]을 개발하였습니다!</h4>
 
-<h2> kbs 시청자 청원</h2>
-
+<h2>🖥 화면 소개</h2>
 <h3> 1️⃣ 최근 청원 page </h3>
 <img src="https://github.com/SopkathonTeam3/Client/assets/81609304/ad52dd2a-7fa7-493f-bdbb-a825b2f1a134"  alt="기능1-대표이미지" />
 <div ><strong> 최근 청원 </strong>  
