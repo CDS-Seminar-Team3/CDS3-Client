@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 import theme from '../../styles/theme';
-import DropDown from './DropDown';
 
 const PageLayout = props => {
   const { children } = props;
