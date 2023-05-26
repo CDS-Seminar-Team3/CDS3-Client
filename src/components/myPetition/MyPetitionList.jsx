@@ -1,32 +1,32 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Pagination from './MyPetitionPagination';
 import { useRecoilState } from 'recoil';
 import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
 
 const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
-  //const listData = [];
 
   const [searchInput, setSearchInput] = useState('');
+
+  //페이지네이션에 필요한 변수와 state들
   const [currentMyPetitionPage, setCurrentMyPetitionPage] = useRecoilState(
     currentMyPetitionPageState
   );
-
-  const searchedData = listData?.filter(item => item.title.includes(searchInput)) || [];
-
+  const [searchedDataLength, setSearchedDataLength] = useState(-1);
+  const [finalData, setFinalData] = useState(slicedData);
   const lengthPerPage = 10;
   const currentPage = currentMyPetitionPage;
-
   const startIndex = (currentPage - 1) * lengthPerPage;
   const endIndex = startIndex + lengthPerPage;
-  const slicedSearchedData = searchedData?.slice(startIndex, endIndex);
 
   const onChangeSearchInput = e => {
     setSearchInput(e.target.value);
-    setCurrentMyPetitionPage(1);
+    if (e.target.value === '') {
+      setSearchedDataLength(-1);
+    }
   };
 
   const sliceTitle = title => {
@@ -36,6 +36,28 @@ const PetitionList = ({ data, slicedData }) => {
     return title.slice(0, 9) + '...';
   };
 
+  const onEnterDown = e => {
+    if (e.key === 'Enter') {
+      const searchedData = listData?.filter(item => item.title.includes(searchInput)) || [];
+      const slicedSearchedData = searchedData?.slice(startIndex, endIndex);
+      setFinalData(slicedSearchedData);
+      setCurrentMyPetitionPage(1);
+      setSearchedDataLength(searchedData.length);
+    }
+  };
+
+  useEffect(() => {
+    if (!searchInput) {
+      setFinalData(slicedData);
+    }
+  }, [searchInput, finalData]);
+
+  useEffect(() => {
+    const searchedData = listData?.filter(item => item.title.includes(searchInput)) || [];
+    const slicedSearchedData = searchedData?.slice(startIndex, endIndex);
+    setFinalData(slicedSearchedData);
+  }, [currentMyPetitionPage]);
+
   return (
     <>
       <St.PetitionListWrapper>
@@ -43,6 +65,7 @@ const PetitionList = ({ data, slicedData }) => {
           placeholder="검색어를 입력하세요"
           value={searchInput}
           onChange={onChangeSearchInput}
+          onKeyDown={onEnterDown}
         ></St.SearchInput>
         <St.TableWrapper>
           <St.TableHeader>
@@ -61,7 +84,7 @@ const PetitionList = ({ data, slicedData }) => {
           </St.TableHeader>
           {listData.length === 0 ? (
             <St.EmptyList>아직 작성한 청원이 없습니다.</St.EmptyList>
-          ) : searchInput === '' ? (
+          ) : searchInput === '' || finalData === undefined ? (
             slicedData?.map(item => (
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
@@ -73,7 +96,7 @@ const PetitionList = ({ data, slicedData }) => {
               </St.TableRow>
             ))
           ) : (
-            slicedSearchedData?.map(item => (
+            finalData?.map(item => (
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                 <St.TableCell flex="2">{item.category}</St.TableCell>
@@ -88,7 +111,13 @@ const PetitionList = ({ data, slicedData }) => {
       </St.PetitionListWrapper>
       <Pagination
         listLength={
-          listData.length === 0 ? 1 : searchInput === '' ? listData.length : searchedData.length === 0 ? 1 : searchedData.length
+          listData.length === 0
+            ? 1
+            : searchedDataLength === -1
+            ? listData.length
+            : searchedDataLength === 0
+            ? 1
+            : searchedDataLength
         }
       />
     </>
@@ -168,7 +197,8 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props => props.textAlign &&
+    ${props =>
+      props.textAlign &&
       `
     text-align: ${props.textAlign};
   `};
