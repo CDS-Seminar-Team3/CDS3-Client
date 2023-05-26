@@ -53,68 +53,13 @@
       <li>필수 입력 사항 미입력시 버튼 기능 비활성화</li>
   </ul>
   <br/></div>
-<h2> 🛠개발자들 </h2>
-<table align="center">
-    <tr align="center">
-        <td style="min-width: 150px;">
-            <a href="">
-              <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/7aa610ff-fc78-460c-9a64-417b28d8df49" width="200" alt="프로필사진">
-              <br />
-              <b>ljh0608</b>
-            </a>
-        </td>
-        <td style="min-width: 150px;">
-            <a href="">
-              <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/86b76119-439a-4340-8a15-5efeb79a0488" width="200" alt="프로필사진">
-              <br />
-              <b>borimong</b>
-            </a>
-        </td>
-        <td style="min-width: 150px;">
-            <a href="">
-              <img src="https://avatars.githubusercontent.com/u/92876819?v=4" width="200" alt="프로필사진">
-              <br />
-              <b>urjimyu</b>
-            </a>
-        </td>
-    </tr>
-    <tr align="center">
-        <td>
-            이재훈 <br/>
-        </td>
-       <td>
-            김현수 <br/>
-      </td>
-       <td>
-            유지민 <br/>
-      </td>
-    </tr>
-  	<tr align="center">
-        <td>
-            메인뷰 <br/> 청원 동의하기
-      </td>
-       <td>
-            청원 작성하기 <br/> 나의 청원 <br/> 
-      </td>
-       <td>
-            상세보기 뷰 <br/>
-      </td>
-    </tr>
-      	<tr align="center">
-        <td>
-            상세보기 청원 동의 API(POST) <br/>
-	    메인뷰 청원 리스트 API(GET)  <br/>
-      </td>
-       <td>
-            상세보기 청원 동의 API(POST) <br/>
-	    메인뷰 청원 리스트 API(GET)  <br/>
-      </td>
-       <td>
-            상세보기 청원 정보 API(GET) <br/>
-	   상세보기 청원 리스트 API(GET)  <br/>
-      </td>
-    </tr>
-</table>
+
+## ✨ OUR TEAM
+
+| <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/86b76119-439a-4340-8a15-5efeb79a0488" width="200" alt="프로필사진"> | <img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/7aa610ff-fc78-460c-9a64-417b28d8df49" width="200" alt="프로필사진"> | <img src="https://avatars.githubusercontent.com/u/92876819?v=4" width="200" alt="프로필사진"> | 
+| :---: | :---: | :---: |
+| <div align = "center"><b>현수</b></div> | <div align = "center"><b>재훈</b></div> | <div align = "center"><b>지민</b></div>  | 
+| [@borimong](https://github.com/borimong) | [@ljh0608](https://github.com/ljh0608) | [@urjimyu](https://github.com/urjimyu) | 
 
 <h2> 🛠 기술스택 </h2>
 
