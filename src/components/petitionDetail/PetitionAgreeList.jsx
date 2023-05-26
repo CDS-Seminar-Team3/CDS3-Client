@@ -44,12 +44,12 @@ const PetitionAgreeList = () => {
     let startPage = 1;
     let endPage = paginationLength;
 
-    /* //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
-    startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
-    endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
-    */
-    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
-    if (currentPage > Math.floor(maxPagesNumber / 2)) {
+    //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
+    startPage = Math.ceil(5 * (Math.ceil(currentPage / 5) - 1) + 1);
+    endPage = startPage < paginationLength / 5 ? startPage + 4 : paginationLength;
+
+    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션 -> 문제 생겨서 수정 예정
+    /*if (currentPage > Math.floor(maxPagesNumber / 2)) {
       startPage = currentPage - Math.floor(maxPagesNumber / 2);
       if (endPage < maxPagesNumber) {
         endPage = startPage + paginationLength - 1;
@@ -62,6 +62,11 @@ const PetitionAgreeList = () => {
       }
     } else {
       endPage = Math.min(maxPagesNumber, paginationLength);
+    }*/
+
+    if (endPage === 0) {
+      startPage = 1;
+      endPage = 1;
     }
 
     const pages = [];
