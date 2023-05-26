@@ -5,9 +5,11 @@ import { useState, useEffect } from 'react';
 import Pagination from './MyPetitionPagination';
 import { useRecoilState } from 'recoil';
 import { currentMyPetitionPageState } from '../../atoms/paginationAtom';
+import { Link } from 'react-router-dom';
 
 const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
+  console.log(slicedData);
 
   const [searchInput, setSearchInput] = useState('');
 
@@ -30,10 +32,10 @@ const PetitionList = ({ data, slicedData }) => {
   };
 
   const sliceTitle = title => {
-    if (title.length < 9) {
+    if (title.length < 8) {
       return title;
     }
-    return title.slice(0, 9) + '...';
+    return title.slice(0, 8) + '...';
   };
 
   const onEnterDown = e => {
@@ -89,8 +91,12 @@ const PetitionList = ({ data, slicedData }) => {
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                 <St.TableCell flex="2">{item.category}</St.TableCell>
-                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
-                <St.TableCell flex="1" textAlign="center">
+                <St.TableCell flex="3">
+                  <St.LinkWrapper to={`/petitionDetail/${item.petitionId}`}>
+                    {sliceTitle(item.title)}
+                  </St.LinkWrapper>
+                </St.TableCell>
+                <St.TableCell flex="1" textAlign="center" isAgreed={item.agreed}>
                   {item.agreeNumber}
                 </St.TableCell>
               </St.TableRow>
@@ -100,8 +106,12 @@ const PetitionList = ({ data, slicedData }) => {
               <St.TableRow key={item.petitionId}>
                 <St.TableCell flex="1">{item.petitionId}</St.TableCell>
                 <St.TableCell flex="2">{item.category}</St.TableCell>
-                <St.TableCell flex="3">{sliceTitle(item.title)}</St.TableCell>
-                <St.TableCell flex="1" textAlign="center">
+                <St.TableCell flex="3">
+                  <St.LinkWrapper to={`/petitionDetail/${item.petitionId}`}>
+                    {sliceTitle(item.title)}
+                  </St.LinkWrapper>
+                </St.TableCell>
+                <St.TableCell flex="1" textAlign="center" isAgreed={item.agreed}>
                   {item.agreeNumber}
                 </St.TableCell>
               </St.TableRow>
@@ -184,9 +194,6 @@ const St = {
 
     height: 5rem;
     border-bottom: 0.2rem solid ${theme.colors.gray100};
-    &:last-child {
-      border-bottom: none;
-    }
   `,
 
   TableCell: styled.article`
@@ -202,6 +209,9 @@ const St = {
       `
     text-align: ${props.textAlign};
   `};
+
+    ${props => props.isAgreed ? `color: ${theme.colors.blue};` : `color: ${theme.colors.gray300};`}
+
   `,
   TableWrapper: styled.section`
     height: 53.6rem;
@@ -213,6 +223,15 @@ const St = {
     color: ${theme.colors.gray400};
 
     text-align: center;
+  `,
+  LinkWrapper: styled(Link)`
+    ${theme.fonts.body1}
+    color: ${theme.colors.black};
+    text-decoration: none;
+
+    &:visited {
+      color: ${theme.colors.gray400};
+    }
   `,
 };
 
