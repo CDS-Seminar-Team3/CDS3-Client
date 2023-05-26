@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ModalContent from './ModalContent';
@@ -11,7 +11,6 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
-  // const modalRef = useRef(null);
 
   useEffect(() => {
     const handleNavigation = () => {
@@ -27,19 +26,9 @@ const Header = () => {
     setMenu(!menu);
   };
 
-  // useEffect(() => {
-  //   const handleClickOutside = event => {
-  //     if (menu == true && !modalRef.current.contains(event.target)) {
-  //       setMenu(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('click', handleClickOutside);
-
-  //   return () => {
-  //     window.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
+  const handleCloseModal = () => {
+    setMenu(false);
+  };
 
   return (
     <>
@@ -57,7 +46,7 @@ const Header = () => {
           </span>
         </St.PageMenu>
       </St.HeaderWrapper>
-      {menu && <ModalContent />}
+      {menu && <ModalContent onClose={handleCloseModal} />}
     </>
   );
 };

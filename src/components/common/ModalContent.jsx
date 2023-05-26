@@ -5,10 +5,10 @@ import theme from '../../styles/theme';
 
 import { IcBlueDot } from '../../assets/icons/0_icons';
 
-const ModalContent = () => {
+const ModalContent = ({ onClose }) => {
   return (
     <ModalPortal>
-      <St.Background>
+      <St.Background onClick={onClose}>
         <St.DropDown className="dropdown">
           <ul>
             <li>시청자위원회</li>
@@ -44,13 +44,14 @@ export const St = {
     left: 0;
     top: 0;
     text-align: center;
-    background-color: #00000033;
+    background-color: ${theme.colors.gray900};
   `,
   DropDown: styled.article`
+    position: relative;
     width: 37.5rem;
     height: 38.9rem;
 
-    top: 4.2rem;
+    top: -14.7rem;
     left: 0;
     padding: 1rem;
 
