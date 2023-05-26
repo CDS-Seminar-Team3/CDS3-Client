@@ -61,9 +61,9 @@
 #### 현수
 `초기 세팅`, `청원 작성 페이지`, `나의 청원 페이지`, `페이지네이션 전체`, `나의 청원 GET API`, `청원 작성 POST API`, `vercel 배포`
 #### 재훈 
-`메인 페이지`, `청원 동의 POST API`, `최근 청원 GET API`
+`메인 페이지`, `청원 동의 POST API`, `최근 청원 GET API`, `README 작성`
 #### 지민
-`청원 상세 페이지 청원 내용`, `청원 상세 내용 GET API`, `청원 동의 리스트 GET API`, `헤더`, `푸터`
+`청원 상세 페이지 청원 내용`, `청원 상세 내용 GET API`, `청원 동의 리스트 GET API`, `헤더`, `푸터`, `README 작성`
 
 <h2> 🛠 기술스택 </h2>
 
@@ -85,7 +85,7 @@
 
  
 ```
-     "axios": "^1.4.0",
+    "axios": "^1.4.0",
     "react-router-dom": "^6.11.1",
     "recoil": "^0.7.7",
     "styled-components": "^6.0.0-rc.1",
@@ -95,7 +95,7 @@
 <br/>
 
 <h2>  📄 컨벤션 및 브랜치 전략 </h2>
-
+<h3>🔽💙3조 웨비들의 팀노션💙🔽</h3>
 <a href="[https://www.notion.so/git-8a86d89ed70e4c48b2e5281b9a3f82f3](https://www.notion.so/9e8cfc89cef244e68afc45f32d597fdf)"><img src="https://img.shields.io/badge/Notion 링크-white?style=for-the-badge&logo=Notion&logoColor=000000"/></a>
 
 <details>
@@ -114,6 +114,14 @@
 | refactor | 코드 리팩토링에 대한 커밋                        |
 </details>
 
+## 브랜치 전략
+
+`feat/#이슈번호`
+
+## 브랜치 운영
+
+- **main**: 최종 Merge를 하는 곳 ❗️
+- **feat/#이슈번호**: 기능을 개발하면서 각자가 사용한 브랜치
 
 <br/>
 
