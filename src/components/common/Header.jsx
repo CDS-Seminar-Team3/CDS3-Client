@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, startTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ModalContent from './ModalContent';
@@ -10,17 +10,6 @@ import { IcMenu, IcMore } from '../../assets/icons/0_icons';
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
-  const [isClicked, setIsClicked] = useState(false);
-
-  useEffect(() => {
-    const handleNavigation = () => {
-      navigate('/');
-    };
-
-    if (isClicked) {
-      handleNavigation();
-    }
-  }, [isClicked, navigate]);
 
   const handleMoreClick = () => {
     setMenu(true);
@@ -28,6 +17,12 @@ const Header = () => {
 
   const handleCloseModal = () => {
     setMenu(false);
+  };
+
+  const onClickDoPetition = () => {
+    startTransition(() => {
+      navigate('/');
+    });
   };
 
   return (
@@ -40,7 +35,7 @@ const Header = () => {
           <span className="headerTitle">KBS 시청자 센터</span>
         </St.TitleMenu>
         <St.PageMenu>
-          <span onClick={() => setIsClicked(true)}>청원하기</span>
+          <span onClick={onClickDoPetition}>청원하기</span>
           <span className="iconMore" onClick={handleMoreClick}>
             <IcMore />
           </span>
@@ -91,7 +86,7 @@ export const St = {
     & > .iconMore {
       display: flex;
       align-items: center;
-      
+
       cursor: pointer;
     }
   `,

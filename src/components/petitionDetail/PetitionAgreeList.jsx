@@ -1,12 +1,19 @@
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useGetAgreeList from '../../hooks/useGetAgreeList';
 import { IcNextPage2, IcPrevPage2 } from '../../assets/icons/0_icons';
 import { detailAgreedListPageState } from '../../atoms/paginationAtom';
 import { useRecoilState } from 'recoil';
+import { agreeListState } from '../../atoms/agreePetitionAtom';
 
 const PetitionAgreeList = () => {
-  const { data } = useGetAgreeList();
+  const { data, getAgreeList } = useGetAgreeList();
+
+  useEffect(() => {
+    getAgreeList();
+  }, [data]);
+
   const [currentPage, setCurrentPage] = useRecoilState(detailAgreedListPageState);
   const agreeList = data ? data?.agreeList : [];
   const paginationLength = Math.ceil(agreeList.length / 5);
@@ -37,21 +44,29 @@ const PetitionAgreeList = () => {
     let startPage = 1;
     let endPage = paginationLength;
 
-    /* //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
-    startPage = Math.ceil(5*(Math.ceil(currentPage/5) - 1)+1);
-    endPage = startPage < paginationLength / 5 ? startPage+4 : paginationLength;
-    */
+    //1,2,3,4,5 -> 6,7,8,9,10 으로 넘어가는 페이지네이션
+    startPage = Math.ceil(5 * (Math.ceil(currentPage / 5) - 1) + 1);
+    endPage = startPage < paginationLength / 5 ? startPage + 4 : paginationLength;
 
-    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션
-    if (currentPage > Math.floor(maxPagesNumber / 2)) {
+    // 선택한 요소가 중앙값이 되도록 하는 페이지네이션 -> 문제 생겨서 수정 예정
+    /*if (currentPage > Math.floor(maxPagesNumber / 2)) {
       startPage = currentPage - Math.floor(maxPagesNumber / 2);
-      endPage = startPage + maxPagesNumber - 1;
+      if (endPage < maxPagesNumber) {
+        endPage = startPage + paginationLength - 1;
+      } else {
+        endPage = startPage + maxPagesNumber - 1;
+      }
       if (endPage > paginationLength) {
         endPage = paginationLength;
-        startPage = endPage - maxPagesNumber + 1;
+        startPage = endPage - paginationLength + 1;
       }
     } else {
       endPage = Math.min(maxPagesNumber, paginationLength);
+    }*/
+
+    if (endPage === 0) {
+      startPage = 1;
+      endPage = 1;
     }
 
     const pages = [];
@@ -163,7 +178,10 @@ const St = {
 
     ${theme.fonts.body1}
     color: ${props => (props.isCurrent ? theme.colors.blue : theme.colors.gray400)};
-    border: ${props => props.isCurrent ? `0.1rem solid ${theme.colors.blue}` : `0.1rem solid ${theme.colors.gray400}`};
+    border: ${props =>
+      props.isCurrent
+        ? `0.1rem solid ${theme.colors.blue}`
+        : `0.1rem solid ${theme.colors.gray400}`};
 
     cursor: pointer;
   `,

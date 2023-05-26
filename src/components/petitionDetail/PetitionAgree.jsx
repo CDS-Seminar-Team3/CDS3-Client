@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
- import useGetAgreeList from '../../hooks/useGetAgreeList';
+import useGetAgreeList from '../../hooks/useGetAgreeList';
 import usePostAgree from '../../hooks/usePostAgree';
-import { useState,useEffect ,useCallback} from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const PetitionAgree = () => {
-  const { data} = useGetAgreeList();
+  const { data, getAgreeList } = useGetAgreeList();
 
-  const {postAgree}=usePostAgree();
-  const agreeContent="청원에 동의합니다.";
-  const handleAgree = useCallback(() => {
-    if (window.confirm("청원에 동의 하시겠습니까?")) {
-      postAgree({ agreeContent });
+  const { postAgree } = usePostAgree();
+  const agreeContent = '청원에 동의합니다.';
+  const handleAgree = useCallback(async () => {
+    if (window.confirm('청원에 동의 하시겠습니까?')) {
+      await postAgree({ agreeContent });
+      getAgreeList();
     }
   }, [postAgree, agreeContent]);
 

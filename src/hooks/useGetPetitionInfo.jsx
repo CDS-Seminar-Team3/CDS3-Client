@@ -33,7 +33,7 @@ const useGetPetitionInfo = () => {
     getPetitionInfo();
   }, []);
 
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, getPetitionInfo };
 };
 
 export default useGetPetitionInfo;
