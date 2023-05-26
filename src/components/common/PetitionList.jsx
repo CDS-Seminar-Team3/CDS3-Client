@@ -17,12 +17,12 @@ const PetitionList = () => {
   );
 
   const lengthPerPage = 10;
-
   const currentPage = currentMyPetitionPage;
-
   const startIndex = (currentPage - 1) * lengthPerPage;
   const endIndex = startIndex + lengthPerPage;
   const slicedSearchedData = data?.slice(startIndex, endIndex);
+
+  const [visitedRows, setVisitedRows] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -45,6 +45,7 @@ const PetitionList = () => {
 
   const handleRowClick = id => {
     navigate(`/petitionDetail/${id}`);
+    setVisitedRows(prevRows => [...prevRows, id]);
   };
   return (
     <St.PetitionListWrapper>
@@ -68,8 +69,10 @@ const PetitionList = () => {
           <St.TableRow key={item.petitionId} onClick={() => handleRowClick(item.petitionId)}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
-            <St.TableCell flex="3">{item.title}</St.TableCell>
-            <St.TableCell flex="1" center="center" display="flex">
+            <St.TableCell flex="3" visited={visitedRows.includes(item.petitionId)}>
+              {item.title}
+            </St.TableCell>
+            <St.TableCell flex="1" center="center" display="flex" agree={item.agree}>
               {item.agreeNumber}
             </St.TableCell>
           </St.TableRow>
@@ -179,6 +182,11 @@ const St = {
       `
     display: ${props.display};
   `}
+    ${props =>
+      props.center &&
+      `
+ justify-content: ${props.center};
+`};
     align-items: center;
     flex: ${props => props.flex || '1'};
     padding: 0.8rem;
@@ -186,16 +194,17 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props =>
-      props.center &&
-      `
- justify-content: ${props.center};
-`};
     cursor: pointer;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    ${props =>
+      props.agree &&
+      `
+    color:${theme.colors.blue};
+    `}
   `,
 };
 
