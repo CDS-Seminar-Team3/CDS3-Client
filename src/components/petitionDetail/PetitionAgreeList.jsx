@@ -52,7 +52,7 @@ const PetitionAgreeList = () => {
       }
       if (endPage > paginationLength) {
         endPage = paginationLength;
-        startPage = endPage - maxPagesNumber + 1;
+        startPage = endPage - paginationLength + 1;
       }
     } else {
       endPage = Math.min(maxPagesNumber, paginationLength);
