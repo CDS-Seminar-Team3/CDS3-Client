@@ -58,6 +58,13 @@
 | <div align = "center"><b>현수</b></div> | <div align = "center"><b>재훈</b></div> | <div align = "center"><b>지민</b></div>  | 
 | [@borimong](https://github.com/borimong) | [@ljh0608](https://github.com/ljh0608) | [@urjimyu](https://github.com/urjimyu) | 
 
+#### 현수
+`초기 세팅`, `청원 작성 페이지`, `나의 청원 페이지`, `페이지네이션 전체`, `나의 청원 GET API`, `청원 작성 POST API`, `vercel 배포`
+#### 재훈 
+`메인 페이지`, `청원 동의 POST API`, `최근 청원 GET API`
+#### 지민
+`청원 상세 페이지 청원 내용`, `청원 상세 내용 GET API`, `청원 동의 리스트 GET API`, `헤더`, `푸터`
+
 <h2> 🛠 기술스택 </h2>
 
    <div align="center">
