@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 const PetitionList = ({ data, slicedData }) => {
   const listData = data ? data?.data : [];
+  console.log(slicedData);
 
   const [searchInput, setSearchInput] = useState('');
 
@@ -31,10 +32,10 @@ const PetitionList = ({ data, slicedData }) => {
   };
 
   const sliceTitle = title => {
-    if (title.length < 9) {
+    if (title.length < 8) {
       return title;
     }
-    return title.slice(0, 9) + '...';
+    return title.slice(0, 8) + '...';
   };
 
   const onEnterDown = e => {
@@ -95,7 +96,7 @@ const PetitionList = ({ data, slicedData }) => {
                     {sliceTitle(item.title)}
                   </St.LinkWrapper>
                 </St.TableCell>
-                <St.TableCell flex="1" textAlign="center">
+                <St.TableCell flex="1" textAlign="center" isAgreed={item.agreed}>
                   {item.agreeNumber}
                 </St.TableCell>
               </St.TableRow>
@@ -110,7 +111,7 @@ const PetitionList = ({ data, slicedData }) => {
                     {sliceTitle(item.title)}
                   </St.LinkWrapper>
                 </St.TableCell>
-                <St.TableCell flex="1" textAlign="center">
+                <St.TableCell flex="1" textAlign="center" isAgreed={item.agreed}>
                   {item.agreeNumber}
                 </St.TableCell>
               </St.TableRow>
@@ -193,9 +194,6 @@ const St = {
 
     height: 5rem;
     border-bottom: 0.2rem solid ${theme.colors.gray100};
-    &:last-child {
-      border-bottom: none;
-    }
   `,
 
   TableCell: styled.article`
@@ -211,6 +209,9 @@ const St = {
       `
     text-align: ${props.textAlign};
   `};
+
+    ${props => props.isAgreed ? `color: ${theme.colors.blue};` : `color: ${theme.colors.gray300};`}
+
   `,
   TableWrapper: styled.section`
     height: 53.6rem;
@@ -224,6 +225,7 @@ const St = {
     text-align: center;
   `,
   LinkWrapper: styled(Link)`
+    ${theme.fonts.body1}
     color: ${theme.colors.black};
     text-decoration: none;
 
