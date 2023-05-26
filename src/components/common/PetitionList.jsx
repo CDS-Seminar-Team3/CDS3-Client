@@ -22,7 +22,9 @@ const PetitionList = () => {
   const endIndex = startIndex + lengthPerPage;
   const slicedSearchedData = data?.slice(startIndex, endIndex);
 
-  const [visitedRows, setVisitedRows] = useState([]);
+  const [visitedRows, setVisitedRows] = useState(
+    JSON.parse(localStorage.getItem('visitedRows')) || []
+  );
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -45,7 +47,10 @@ const PetitionList = () => {
 
   const handleRowClick = id => {
     navigate(`/petitionDetail/${id}`);
-    setVisitedRows(prevRows => [...prevRows, id]);
+    const updatedVisitedRows = [...visitedRows, id];
+    setVisitedRows(updatedVisitedRows);
+
+    localStorage.setItem('visitedRows', JSON.stringify(updatedVisitedRows));
   };
   return (
     <St.PetitionListWrapper>
@@ -69,7 +74,7 @@ const PetitionList = () => {
           <St.TableRow key={item.petitionId} onClick={() => handleRowClick(item.petitionId)}>
             <St.TableCell flex="1">{item.petitionId}</St.TableCell>
             <St.TableCell flex="2">{item.category}</St.TableCell>
-            <St.TableCell flex="3" visited={visitedRows.includes(item.petitionId)}>
+            <St.TableCell flex="3" visited={visitedRows.includes(item.petitionId)} title={true}>
               {item.title}
             </St.TableCell>
             <St.TableCell flex="1" center="center" display="flex" agree={item.agree}>
@@ -121,7 +126,7 @@ const St = {
     margin-bottom: 0.8rem;
 
     background-color: ${theme.colors.gray100};
-    color: ${theme.colors.gray300};
+    color: ${theme.colors.black};
     ${theme.fonts.body1};
 
     outline: none;
@@ -204,6 +209,18 @@ const St = {
       props.agree &&
       `
     color:${theme.colors.blue};
+    `}
+
+    ${props =>
+      props.title &&
+      `
+      ${theme.fonts.body1};
+      color: ${theme.colors.black};
+    `}
+        ${props =>
+      props.visited &&
+      `
+      color: ${theme.colors.gray300};
     `}
   `,
 };
