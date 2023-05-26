@@ -16,3 +16,4 @@ export { ReactComponent as IcPrevPage } from '../icons/IcPrevPage.svg';
 export { ReactComponent as IcNextPage } from '../icons/IcNextPage.svg';
 export { ReactComponent as IcPrevPage2 } from '../icons/IcPrevPage2.svg';
 export { ReactComponent as IcNextPage2 } from '../icons/IcNextPage2.svg';
+export { ReactComponent as IcBlueDot } from '../icons/IcBlueDot.svg';
