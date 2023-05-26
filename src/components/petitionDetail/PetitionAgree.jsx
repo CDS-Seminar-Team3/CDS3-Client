@@ -12,7 +12,7 @@ const PetitionAgree = () => {
     <St.PetitionAgreeWrapper>
       <St.AgreeHeader>
         <h1>
-          현재 <span>{data.agreeList.length}</span>명이 동참중입니다.
+          현재 <span>{data?.agreeList.length}</span>명이 동참중입니다.
         </h1>
       </St.AgreeHeader>
       <St.InputWrapper>
