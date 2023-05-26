@@ -123,11 +123,7 @@ const PetitionList = ({ data, slicedData }) => {
         listLength={
           listData.length === 0
             ? 1
-            : searchedDataLength === -1
-            ? listData.length
-            : searchedDataLength === 0
-            ? 1
-            : searchedDataLength
+            : searchedDataLength === -1 ? listData.length : searchedDataLength === 0 ? 1 : searchedDataLength
         }
       />
     </>
@@ -204,8 +200,7 @@ const St = {
     ${theme.fonts.body3};
     color: ${theme.colors.gray300};
 
-    ${props =>
-      props.textAlign &&
+    ${props => props.textAlign &&
       `
     text-align: ${props.textAlign};
   `};

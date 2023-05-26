@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from 'styled-components';
 import { IcNextPage, IcPrevPage } from '../../assets/icons/0_icons';
 import theme from '../../styles/theme';

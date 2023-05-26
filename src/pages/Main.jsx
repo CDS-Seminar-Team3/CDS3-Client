@@ -13,7 +13,7 @@ const Main = () => {
   const navigate = useNavigate();
   const issuePetition = useRecoilValue(issuePetitionSelector);
   const [currentPage, setCurrentPage] = useRecoilState(currentMyPetitionPageState);
-
+  console.log(currentPage);
   useEffect(() => {}, [issuePetition]);
 
   return (
