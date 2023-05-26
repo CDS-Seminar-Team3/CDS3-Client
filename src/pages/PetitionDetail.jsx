@@ -7,7 +7,7 @@ import useGetPetitionInfo from '../hooks/useGetPetitionInfo.jsx';
 import { useEffect } from 'react';
 
 const PetitionDetail = () => {
-  const { data, isLoading, isError, getPetitionInfo } = useGetPetitionInfo();
+  const { data, getPetitionInfo } = useGetPetitionInfo();
   // const { data: agreeList } = useGetAgreeList();
   // console.log("asasd"+JSON.stringify(agreeList,2,null));
 

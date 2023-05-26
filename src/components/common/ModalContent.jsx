@@ -4,6 +4,7 @@ import { styled, keyframes, css } from 'styled-components';
 import theme from '../../styles/theme';
 import { IcBlueDot, IcMenu, IcMore } from '../../assets/icons/0_icons';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ModalContent = ({ onClose }) => {
   const navigate = useNavigate();
@@ -63,6 +64,10 @@ const ModalContent = ({ onClose }) => {
       <St.Background onClick={handleClose}></St.Background>
     </ModalPortal>
   );
+};
+
+ModalContent.propTypes = {
+  onClose: PropTypes.node.isRequired,
 };
 
 export default ModalContent;
@@ -130,12 +135,9 @@ export const St = {
       }
     }
 
-    animation: ${props =>
-      props.isVisible
-        ? css`
+    animation: ${props => props.isVisible ? css`
             ${slideDown} 0.3s ease-out forwards
-          `
-        : css`
+          ` : css`
             ${slideUp} 0.3s ease-out forwards
           `};
   `,

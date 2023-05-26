@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useGetAgreeList from '../../hooks/useGetAgreeList';
 import { IcNextPage2, IcPrevPage2 } from '../../assets/icons/0_icons';
 import { detailAgreedListPageState } from '../../atoms/paginationAtom';
 import { useRecoilState } from 'recoil';
-import { agreeListState } from '../../atoms/agreePetitionAtom';
 
 const PetitionAgreeList = () => {
   const { data, getAgreeList } = useGetAgreeList();
@@ -18,7 +17,7 @@ const PetitionAgreeList = () => {
   const agreeList = data ? data?.agreeList : [];
   const paginationLength = Math.ceil(agreeList.length / 5);
   const lengthPerPage = 5;
-  const maxPagesNumber = 5;
+  //const maxPagesNumber = 5;
 
   const startIndex = (currentPage - 1) * lengthPerPage;
   const endIndex = startIndex + lengthPerPage;
@@ -178,10 +177,7 @@ const St = {
 
     ${theme.fonts.body1}
     color: ${props => (props.isCurrent ? theme.colors.blue : theme.colors.gray400)};
-    border: ${props =>
-      props.isCurrent
-        ? `0.1rem solid ${theme.colors.blue}`
-        : `0.1rem solid ${theme.colors.gray400}`};
+    border: ${props => props.isCurrent ? `0.1rem solid ${theme.colors.blue}` : `0.1rem solid ${theme.colors.gray400}`};
 
     cursor: pointer;
   `,

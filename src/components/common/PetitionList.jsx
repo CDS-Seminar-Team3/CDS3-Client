@@ -87,11 +87,7 @@ const PetitionList = () => {
         listLength={
           data.length === 0
             ? 1
-            : searchValue === ''
-            ? data.length
-            : data.length === 0
-            ? 1
-            : data.length
+            : searchValue === '' ? data.length : data.length === 0 ? 1 : data.length
         }
       />
     </St.PetitionListWrapper>
@@ -153,8 +149,7 @@ const St = {
   `,
   TableHeaderCell: styled.article`
     display: flex;
-    ${props =>
-      props.center &&
+    ${props => props.center &&
       `
  justify-content: ${props.center};
 
@@ -181,8 +176,7 @@ const St = {
 
   TableCell: styled.article`
     ${props => (props.display ? `display: ${props.display};` : `display: block;`)}
-    ${props =>
-      props.center &&
+    ${props => props.center &&
       `
  justify-content: ${props.center};
 `};
@@ -199,20 +193,17 @@ const St = {
     overflow: hidden;
     text-overflow: ellipsis;
 
-    ${props =>
-      props.agree &&
+    ${props => props.agree &&
       `
     color:${theme.colors.blue};
     `}
 
-    ${props =>
-      props.title &&
+    ${props => props.title &&
       `
       ${theme.fonts.body1};
       color: ${theme.colors.black};
     `}
-        ${props =>
-      props.visited &&
+        ${props => props.visited &&
       `
       color: ${theme.colors.gray300};
     `}

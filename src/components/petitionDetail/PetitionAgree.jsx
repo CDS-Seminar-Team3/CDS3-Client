@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import useGetAgreeList from '../../hooks/useGetAgreeList';
 import usePostAgree from '../../hooks/usePostAgree';
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 
 const PetitionAgree = () => {
   const { data, getAgreeList } = useGetAgreeList();
