@@ -10,7 +10,6 @@ const useGetCurrentPetition = async () => {
 
   try {
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/main`, config);
-    console.log(response.data.data);
     return response.data.data;
   } catch (e) {
     console.error(e);

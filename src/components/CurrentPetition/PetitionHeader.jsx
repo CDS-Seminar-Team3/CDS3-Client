@@ -2,12 +2,21 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { issuePetitionSelector } from '../../recoils/selector';
 import { useRecoilValue } from 'recoil';
-
+import { useState, useEffect } from 'react';
 const PetitionHeader = () => {
-  // // const issuePetition = useRecoilValue(issuePetitionSelector);
+  const [dday,setDday]=useState(1);
   const issuePetition = useRecoilValue(issuePetitionSelector);
-  console.log(issuePetition);
-  // console.log(issuePetition.category);
+
+
+ useEffect(()=>{
+  const today=new Date();
+
+  const targetDate=new Date(issuePetition.endDate);
+  const timeDif=targetDate.getTime()-today.getTime();
+  const diffDays = Math.ceil(timeDif / (1000 * 60 * 60 * 24));
+  setDday(diffDays);
+  console.log(diffDays);
+   },[issuePetition])
 
   return (
     <St.PetitionHeaderWrapper>
@@ -27,7 +36,7 @@ const PetitionHeader = () => {
         <section>
           <span>청원마감</span>
           <span>{issuePetition.endDate}</span>
-          <article>D-N</article>
+          <article>D-{dday}</article>
         </section>
       </St.FooterContainer>
     </St.PetitionHeaderWrapper>
