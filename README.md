@@ -2,8 +2,7 @@
 
 <h2> kbs 시청자 센터 </h2>
 
-<img src="https://github.com/ljh0608/Algorithm-study/assets/81609304/f22b1746-f5bc-44fd-9030-8a4e46232564
-"  alt="서비스대표-이미지" />
+<img src="https://github.com/CDS-Seminar-Team3/CDS3-Client/assets/92876819/5a92f14d-43cb-41d6-b124-1baf0bdb3e73"  alt="서비스대표-이미지" />
 
 </div>
 
@@ -54,7 +53,7 @@
       <li>필수 입력 사항 미입력시 버튼 기능 비활성화</li>
   </ul>
   <br/></div>
-<h2> (개발자들) </h2>
+<h2> 🛠개발자들 </h2>
 <table align="center">
     <tr align="center">
         <td style="min-width: 150px;">
